@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.1.0)
 
 # 将 C++ 标准设置为 C++ 20
 set(CMAKE_CXX_STANDARD 20)  
-# C++ 11 是强制要求，不会衰退至低版本
+# C++ 20 是强制要求，不会衰退至低版本
 set(CMAKE_CXX_STANDARD_REQUIRED ON)  
 # 禁止使用编译器特有扩展
 set(CMAKE_CXX_EXTENSIONS OFF)  
@@ -20,6 +20,18 @@ include(GlobalSettings)
 
 # 工程名
 project(${PROJECT_NAME})
+
+# Release Debug RelWithDebInfo MinSizeRel
+if (NOT CMAKE_BUILD_TYPE)
+        set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+endif()
+
+# 添加include 目录
+# include_directories(path/to/include/dir)
+# link_directories(path/to/library/dir)
+# target_name目标单独添加include目录
+# target_include_directories(target_name PUBLIC path/to/include/dir)
+# target_link_directories(target_name PUBLIC path/to/library/dir)
 
 # 添加子目录
 add_subdirectory(math)
