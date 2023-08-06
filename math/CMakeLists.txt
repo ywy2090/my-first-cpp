@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20.0)
+cmake_minimum_required(VERSION 3.10.0)
 
 project(math)
 
@@ -10,6 +10,6 @@ if(TESTS)
 endif(TESTS)
 
 # 基准测试
-if(BENCH_MARK)
+if(BENCHMARKS)
     add_subdirectory(benchmark)
-endif(BENCH_MARK)
+endif(BENCHMARKS)
