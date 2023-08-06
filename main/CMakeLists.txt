@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.1.0)
 
-message(STATUS "CMakeLists.txt for main")
+# message(STATUS "CMakeLists.txt for main")
 
 # 通配符
 # file(GLOB SRCS *.cpp) # 匹配当前目录下的.cpp文件

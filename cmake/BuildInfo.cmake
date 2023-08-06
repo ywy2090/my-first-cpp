@@ -18,7 +18,6 @@ function(create_build_info)
 
     set(PROJECT_BUILD_PLATFORM "${PROJECT_BUILD_OS}/${PROJECT_BUILD_COMPILER}")
 
-
     if (CMAKE_BUILD_TYPE)
         set(_cmake_build_type ${CMAKE_BUILD_TYPE})
     else()
@@ -28,15 +27,15 @@ function(create_build_info)
     add_custom_target(BuildInfo.h ALL
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         COMMAND ${CMAKE_COMMAND} -DPROJECT_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
-        -DPROJECT_BUILDINFO_IN="${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/BuildInfo.h.in"
+        -DPROJECT_BUILDINFO_IN="${CMAKE_SOURCE_DIR}/cmake/templates/BuildInfo.h.in"
         -DPROJECT_DST_DIR="${PROJECT_BINARY_DIR}/include"
-        -DPROJECT_CMAKE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/cmake"
+        -DPROJECT_CMAKE_DIR="${CMAKE_SOURCE_DIR}/cmake"
         -DPROJECT_BUILD_TYPE="${_cmake_build_type}"
         -DPROJECT_BUILD_OS="${PROJECT_BUILD_OS}"
         -DPROJECT_BUILD_COMPILER="${PROJECT_BUILD_COMPILER}"
         -DPROJECT_BUILD_PLATFORM="${PROJECT_BUILD_PLATFORM}"
         -DPROJECT_VERSION_SUFFIX="${VERSION_SUFFIX}"
         -DPROJECT_VERSION="${PROJECT_VERSION}"
-        -P "${CMAKE_CURRENT_SOURCE_DIR}/cmake/GenBuildInfo.cmake")
-    include_directories(BEFORE ${PROJECT_BINARY_DIR})
+        -P "${CMAKE_SOURCE_DIR}/cmake/GenBuildInfo.cmake")
+    include_directories(BEFORE "${PROJECT_BINARY_DIR}/include")
 endfunction()
