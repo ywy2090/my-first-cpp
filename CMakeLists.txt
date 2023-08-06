@@ -41,7 +41,7 @@ create_build_info()
 # target_include_directories(target_name PUBLIC path/to/include/dir)
 # target_link_directories(target_name PUBLIC path/to/library/dir)
 
-# 添加子目录
+# 添加子模块
 add_subdirectory(math)
 add_subdirectory(main)
 

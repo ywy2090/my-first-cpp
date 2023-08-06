@@ -4,8 +4,6 @@ project(math)
 
 add_subdirectory(src)
 
-include_directories()
-
 # 单元测试
 if(TESTS)
     add_subdirectory(test)

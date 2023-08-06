@@ -36,6 +36,6 @@ function(create_build_info)
         -DPROJECT_BUILD_PLATFORM="${PROJECT_BUILD_PLATFORM}"
         -DPROJECT_VERSION_SUFFIX="${VERSION_SUFFIX}"
         -DPROJECT_VERSION="${PROJECT_VERSION}"
-        -P "${CMAKE_SOURCE_DIR}/cmake/GenBuildInfo.cmake")
+        -P "${CMAKE_SOURCE_DIR}/cmake/BuildInfoGenerator.cmake")
     include_directories(BEFORE "${PROJECT_BINARY_DIR}/include")
 endfunction()
