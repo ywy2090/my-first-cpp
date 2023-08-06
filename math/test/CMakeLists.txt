@@ -25,8 +25,6 @@ file(GLOB_RECURSE SRCS *.cpp)
 add_executable(${MATH_TEST_TARGET} ${SRCS})
 
 # TODO: 如何安装的库的头/lib文件，其他模块inlude link
-target_include_directories(${MATH_TEST_TARGET} PUBLIC ${CMAKE_SOURCE_DIR}/math/src)
-# 链接
 target_link_libraries(${MATH_TEST_TARGET} GTest::gtest_main ${MATH_TARGET})
 
 include(GoogleTest)
