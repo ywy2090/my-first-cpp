@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Math.h"
+#include "MyMath.h"
 
 int main()
 {

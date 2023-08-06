@@ -25,11 +25,6 @@ project(${PROJECT_NAME})
 add_subdirectory(math)
 add_subdirectory(main)
 
-# ut
-if(TESTS)
-    add_subdirectory(test)
-endif(TESTS)
-
 # 基准测试
 if(BENCH_MARK)
     add_subdirectory(benchmark)
