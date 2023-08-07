@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+// https://google.github.io/googletest/
+
 TEST(MathTest, AddAssertions)
 {
     math::Math math;
@@ -13,7 +15,7 @@ TEST(MathTest, AddAssertions)
 TEST(MathTest, SubAssertions)
 {
     math::Math math;
-    int ret = math.add(10, 2);
+    int ret = math.sub(10, 2);
     // Expect equality.
     EXPECT_EQ(8, ret);
 }

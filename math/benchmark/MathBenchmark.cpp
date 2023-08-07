@@ -1,5 +1,8 @@
 #include <benchmark/benchmark.h>
 
+
+// https://github.com/google/benchmark/blob/main/docs/user_guide.md
+
 static void BM_StringCreation(benchmark::State& state)
 {
     for (auto _ : state)

@@ -15,7 +15,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-set(MATH_TEST_TARGET "math_test")
+set(MATH_TEST_TARGET "math-test")
 file(GLOB_RECURSE SRCS *.cpp)
 
 # 测试程序
