@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10.0)
 
-project(my_math)
+project(libmath)
 
 add_subdirectory(src)
 
