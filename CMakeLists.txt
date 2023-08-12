@@ -18,6 +18,7 @@ endif()
 
 # 加载cmake模块
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+message(STATUS " CMAKE_MODULE_PATH => ${CMAKE_MODULE_PATH}")
 
 # include GlobalSettings
 include(GlobalSettings)
@@ -27,7 +28,6 @@ include(CompilerSettings)
 include(BuildInfo)
 create_build_info()
 
-
 # 添加include 目录
 # include_directories(path/to/include/dir)
 # link_directories(path/to/library/dir)
@@ -36,7 +36,8 @@ create_build_info()
 # target_link_directories(target_name PUBLIC path/to/library/dir)
 
 # 添加子模块
-add_subdirectory(math)
+add_subdirectory(modules)
+# 主函数
 add_subdirectory(main)
 
 # 基准测试
