@@ -1,29 +1,31 @@
-macro(replace_if_different SOURCE DST)
-    set(extra_macro_args ${ARGN})
-    set(options CREATE)
-    set(one_value_args)
-    set(multi_value_args)
-    cmake_parse_arguments(REPLACE_IF_DIFFERENT "${options}" "${one_value_args}" "${multi_value_args}" "${extra_macro_args}")
+# Set build platform; to be written to BuildInfo.h
 
-    if (REPLACE_IF_DIFFERENT_CREATE AND (NOT (EXISTS "${DST}")))
-        file(WRITE "${DST}" "")
-    endif()
+set(PROJECT_BUILD_OS "${CMAKE_SYSTEM_NAME}")
 
-    execute_process(COMMAND ${CMAKE_COMMAND} -E compare_files "${SOURCE}" "${DST}" RESULT_VARIABLE DIFFERENT OUTPUT_QUIET ERROR_QUIET)
+if (CMAKE_COMPILER_IS_MINGW)
+    set(PROJECT_BUILD_COMPILER "mingw")
+elseif (CMAKE_COMPILER_IS_MSYS)
+    set(PROJECT_BUILD_COMPILER "msys")
+elseif (CMAKE_COMPILER_IS_GNUCXX)
+    set(PROJECT_BUILD_COMPILER "g++")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(PROJECT_BUILD_COMPILER "clang")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+    set(PROJECT_BUILD_COMPILER "appleclang")
+else ()
+    set(PROJECT_BUILD_COMPILER "unknown")
+endif ()
 
-    if (DIFFERENT)
-        execute_process(COMMAND ${CMAKE_COMMAND} -E rename "${SOURCE}" "${DST}")
-    else()
-    execute_process(COMMAND ${CMAKE_COMMAND} -E remove "${SOURCE}")
-    endif()
-endmacro()
+set(PROJECT_BUILD_PLATFORM "${PROJECT_BUILD_OS}/${PROJECT_BUILD_COMPILER}")
+
+if (CMAKE_BUILD_TYPE)
+    set(PROJECT_BUILD_TYPE ${CMAKE_BUILD_TYPE})
+else()
+    set(PROJECT_BUILD_TYPE "${CMAKE_CFG_INTDIR}")
+endif()
 
 if (NOT PROJECT_BUILD_TYPE)
     set(PROJECT_BUILD_TYPE "unknown")
-endif()
-
-if (NOT PROJECT_BUILD_PLATFORM)
-    set(PROJECT_BUILD_PLATFORM "unknown")
 endif()
 
 execute_process(
@@ -50,10 +52,12 @@ execute_process(
     OUTPUT_VARIABLE PROJECT_BUILD_BRANCH OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET
     )
 
-set(TMPFILE "${PROJECT_DST_DIR}/BuildInfo.h.tmp")
-set(OUTFILE "${PROJECT_DST_DIR}/BuildInfo.h")
 
-configure_file("${PROJECT_BUILDINFO_IN}" "${TMPFILE}")
+# set(DPROJECT_BUILDINFO_IN "${CMAKE_SOURCE_DIR}/cmake/templates/BuildInfo.h.in")
+# set(OUTFILE "${PROJECT_BINARY_DIR}/BuildInfo.h")
 
-replace_if_different("${TMPFILE}" "${OUTFILE}" CREATE)
+# message(STATUS " => DPROJECT_BUILDINFO_IN => ${DPROJECT_BUILDINFO_IN}")
+# message(STATUS " => OUTFILE => ${OUTFILE}")
 
+configure_file("${CMAKE_SOURCE_DIR}/cmake/templates/BuildInfo.h.in" "${PROJECT_BINARY_DIR}/include/BuildInfo.h")
+include_directories(BEFORE "${PROJECT_BINARY_DIR}/include")

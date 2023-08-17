@@ -45,8 +45,9 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
 
     if(NOT APPLE)
         set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-        add_compile_options(-fvisibility=hidden)
-        add_compile_options(-fvisibility-inlines-hidden)
+        # add_compile_options(-fvisibility=hidden)
+        # add_compile_options(-fvisibility-inlines-hidden)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden")
     endif()
 
     # 静态编译选项

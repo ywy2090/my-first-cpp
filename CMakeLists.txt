@@ -18,15 +18,15 @@ endif()
 
 # 加载cmake模块
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-message(STATUS " CMAKE_MODULE_PATH => ${CMAKE_MODULE_PATH}")
+message(STATUS "CMAKE_MODULE_PATH => ${CMAKE_MODULE_PATH}")
+message(STATUS "PROJECT_BINARY_DIR => ${PROJECT_BINARY_DIR}")
 
 # include GlobalSettings
 include(GlobalSettings)
 # include CompilerSettings
 include(CompilerSettings)
-# include BuildInfo
-include(BuildInfo)
-create_build_info()
+# include BuildInfoGenerator
+include(BuildInfoGenerator)
 
 # 添加include 目录
 # include_directories(path/to/include/dir)
