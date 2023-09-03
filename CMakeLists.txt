@@ -28,6 +28,12 @@ include(CompilerSettings)
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
+# 基准测试
+if(BENCHMARKS)
+    include(ProjectBenchmark)
+endif(BENCHMARKS)
+
+
 # 添加include 目录
 # include_directories(path/to/include/dir)
 # link_directories(path/to/library/dir)
@@ -39,8 +45,3 @@ include(BuildInfoGenerator)
 add_subdirectory(modules)
 # 主函数
 add_subdirectory(main)
-
-# 基准测试
-# if(BENCHMARKS)
-#     add_subdirectory(benchmark)
-# endif(BENCHMARKS)
