@@ -33,6 +33,8 @@ if(BENCHMARKS)
     include(ProjectBenchmark)
 endif(BENCHMARKS)
 
+include(ProjectLeveldb)
+
 
 # 添加include 目录
 # include_directories(path/to/include/dir)

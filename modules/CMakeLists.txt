@@ -9,6 +9,6 @@ if(USE_LIBMATH)
     add_subdirectory(libmath)
 endif(USE_LIBMATH)
 
-
 add_subdirectory(simple_c_demo)
+add_subdirectory(leveldb_test)
 # TODO: 添加其他模块

@@ -9,7 +9,7 @@
 include(ExternalProject)
 ExternalProject_add(googlebenchmark
     PREFIX ${THIRD_PARTY_DIR}
-    DOWNLOAD_NAME googlebenchmark-1.8.2.tar.gz
+    DOWNLOAD_NAME googlebenchmark-1.8.2.zip
     DOWNLOAD_NO_PROGRESS 1
     LOG_DOWNLOAD true
     LOG_BUILD true 
