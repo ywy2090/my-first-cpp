@@ -1,8 +1,8 @@
-//编译命令 ： g++ -o1 -g simple_c_demo.cpp -lpthread -o simple_c_demo
-//标准c头文件
+// 编译命令 ： g++ -o1 -g simple_c_demo.cpp -lpthread -o simple_c_demo
+// 标准c头文件
 #include <errno.h>
 #include <inttypes.h>
-#include <malloc.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -13,15 +13,15 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-//日志打印级别宏定义
-#define LOG_LEVEL_FALT (0x06)
+// 日志打印级别宏定义
+#define LOG_LEVEL_FATAL (0x06)
 #define LOG_LEVEL_ERROR (0x05)
 #define LOG_LEVEL_WARN (0x04)
 #define LOG_LEVEL_INFO (0x03)
 #define LOG_LEVEL_DEBUG (0x02)
 #define LOG_LEVEL_TRACE (0x01)
 
-//简单的日志打印宏定义
+// 简单的日志打印宏定义
 #define simple_log(s, l, fmt, ...)                             \
     do                                                         \
     {                                                          \
@@ -31,36 +31,38 @@
             fflush(stderr);                                    \
         }                                                      \
     } while (0);
-#define log_falt(fmt, ...) simple_log("FALT", LOG_LEVEL_FALT, fmt, __VA_ARGS__);
+#define log_fatal(fmt, ...) simple_log("FATAL", LOG_LEVEL_FATAL, fmt, __VA_ARGS__);
 #define log_error(fmt, ...) simple_log("ERROR", LOG_LEVEL_ERROR, fmt, __VA_ARGS__);
 #define log_warn(fmt, ...) simple_log("WARN", LOG_LEVEL_WARN, fmt, __VA_ARGS__);
 #define log_info(fmt, ...) simple_log("INFO", LOG_LEVEL_INFO, fmt, __VA_ARGS__);
 #define log_debug(fmt, ...) simple_log("DEBUG", LOG_LEVEL_DEBUG, fmt, __VA_ARGS__);
 #define log_trace(fmt, ...) simple_log("TRACE", LOG_LEVEL_TRACE, fmt, __VA_ARGS__);
 
-//函数前置声明
+/*
+// 函数前置声明
 int64_t getS();
 int64_t getMS();
 int64_t getUS();
+*/
 
-//一些运行时的配置信息,大多数可以由命令行设置
+// 一些运行时的配置信息,大多数可以由命令行设置
 struct GCONFIG
 {
-    //显示main的命令行参数
+    // 显示main的命令行参数
     int show_args;
     // log打印级别
     int level;
-    //程序运行时间,不大于0表示永久运行,单位s
-    int run_time;
+    // 程序运行时间,不大于0表示永久运行,单位s
+    int64_t run_time;
 };
 
-//配置
+// 配置
 struct GCONFIG g_Config;
 
-//全局的时间变量信息,用于获取程序运行时间,由单独的线程更新
-static volatile int64_t g_time_us = -1;
-static volatile int64_t g_time_s = -1;
-static volatile int64_t g_time_ms = -1;
+// 全局的时间变量信息,用于获取程序运行时间,由单独的线程更新
+static int64_t g_time_us = -1;
+static int64_t g_time_s = -1;
+static int64_t g_time_ms = -1;
 
 void initConfig(struct GCONFIG* p)
 {
@@ -69,31 +71,31 @@ void initConfig(struct GCONFIG* p)
     p->run_time = -1;
 }
 
-//当前程序是否可以运行
+// 获取程序开始到目前运行的时间,单位s
+int64_t getS(void)
+{
+    return g_time_s;
+}
+
+// 获取程序开始到目前的运行时间,单位us
+int64_t getUS(void)
+{
+    return g_time_us;
+}
+
+// 获取程序开始到目前的运行时间,单位ms
+int64_t getMS(void)
+{
+    return getUS() / 1000;
+}
+
+// 当前程序是否可以运行
 int isRun(struct GCONFIG* p)
 {
     return p->run_time <= 0 || getS() < p->run_time;
 }
 
-//获取程序开始到目前运行的时间,单位s
-inline int64_t getS()
-{
-    return g_time_s;
-}
-
-//获取程序开始到目前的运行时间,单位us
-inline int64_t getUS()
-{
-    return g_time_us;
-}
-
-//获取程序开始到目前的运行时间,单位ms
-inline int64_t getMS()
-{
-    return getUS() / 1000;
-}
-
-//更新时间信息的线程
+// 更新时间信息的线程
 void* update_runtime_thread(void* para)
 {
     static int bFirst = 1;
@@ -106,7 +108,7 @@ void* update_runtime_thread(void* para)
         ret = gettimeofday(&first_tv, NULL);
         if (-1 == ret)
         {
-            log_falt("[getUS] gettimeofday failed,errno=%d", errno);
+            log_fatal("[getUS] gettimeofday failed,errno=%d", errno);
             exit(0);
         }
         bFirst = 0;
@@ -119,7 +121,7 @@ void* update_runtime_thread(void* para)
         ret = gettimeofday(&now_tv, NULL);
         if (-1 == ret)
         {
-            log_falt("[getUS] gettimeofday failed,errno=%d", errno);
+            log_fatal("[getUS] gettimeofday failed,errno=%d", errno);
             exit(0);
         }
 
@@ -136,8 +138,8 @@ void* update_runtime_thread(void* para)
     return NULL;
 }
 
-//启动更新时间信息的线程
-void startTimer()
+// 启动更新时间信息的线程
+void startTimer(void)
 {
     pthread_t pid;
     int ret = pthread_create(&pid, NULL, &update_runtime_thread, NULL);
@@ -152,7 +154,7 @@ void startTimer()
 }
 
 // usage
-void usage()
+void usage(void)
 {
     fprintf(stderr, "==============================================================\n");
     fprintf(stderr, "simple_test_template version=0.0.1,create by wangzhang 2017/03/23 09:30\n");
@@ -165,7 +167,7 @@ void usage()
     fprintf(stderr, "==============================================================\n");
 }
 
-//初始化解析命令行参数
+// 初始化解析命令行参数
 void init_para(int argc, char* argv[])
 {
     if (argc <= 1)
@@ -214,20 +216,18 @@ void init_para(int argc, char* argv[])
         }
         }
     }
-
-    return;
 }
 
-//主函数
+// 主函数
 int main(int argc, char* argv[])
 {
-    //参数解析
+    // 参数解析
     init_para(argc, argv);
 
-    //启动更新时间线程
+    // 启动更新时间线程
     startTimer();
 
-    //显示main参数
+    // 显示main参数
     if (g_Config.show_args)
     {  //
         log_info("argc=%d", argc);
@@ -237,13 +237,13 @@ int main(int argc, char* argv[])
         }
     }
 
-    //添加测试代码
+    // 添加测试代码
 
-    //主线程
+    // 主线程
     while (isRun(&g_Config))
     {
         log_info("man thread running, escape(ms) = %" PRId64 "", getMS());
-        // sleep one sesond
+        // sleep one second
         sleep(1);
     }
 
