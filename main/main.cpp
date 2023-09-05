@@ -54,7 +54,7 @@ int main0(int argc, char** argv)
 
 int main(int argc, char* argv[])
 {
-    if (argc >= 1 && ((0 == strncmp(argv[1], "-v", 2) || 0 == strncmp(argv[1], "--version", 8))))
+    if (argc >= 2 && ((0 == strncmp(argv[1], "-v", 2) || 0 == strncmp(argv[1], "--version", 8))))
     {
         printVersion();
         return 0;
