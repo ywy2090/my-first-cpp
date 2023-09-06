@@ -1,6 +1,6 @@
 # 设置全局使用的变量
 set(MATH_TARGET "math")
-#
+
 message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/build/third_party/)
 set(THIRD_PARTY_LIBS_DIR ${THIRD_PARTY_DIR}/lib/)
