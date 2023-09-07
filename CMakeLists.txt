@@ -1,4 +1,3 @@
-
 # cmake版本号限制
 cmake_minimum_required(VERSION 3.1.0)
 
@@ -7,14 +6,14 @@ set(PROJECT_NAME my-first-cpp)
 
 set(VERSION "1.0.0")
 set(VERSION_SUFFIX "-beta")
+
 # 工程名
-project(${PROJECT_NAME} VERSION ${VERSION})
+project(${PROJECT_NAME} VERSION ${VERSION} LANGUAGES CXX)
 
 # Release Debug RelWithDebInfo MinSizeRel
-if (NOT CMAKE_BUILD_TYPE)
+if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 endif()
-
 
 # 加载cmake模块
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
@@ -23,8 +22,10 @@ message(STATUS "PROJECT_BINARY_DIR => ${PROJECT_BINARY_DIR}")
 
 # include GlobalSettings
 include(GlobalSettings)
+
 # include CompilerSettings
 include(CompilerSettings)
+
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
@@ -35,7 +36,6 @@ endif(BENCHMARKS)
 
 include(ProjectLeveldb)
 
-
 # 添加include 目录
 # include_directories(path/to/include/dir)
 # link_directories(path/to/library/dir)
@@ -45,5 +45,6 @@ include(ProjectLeveldb)
 
 # 添加子模块
 add_subdirectory(modules)
+
 # 主函数
 add_subdirectory(main)
