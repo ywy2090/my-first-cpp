@@ -10,13 +10,19 @@ static void DoTeardown(const benchmark::State& state) {}
 static void BM_MyMath_add(benchmark::State& state)
 {
     math::Math math;
-    benchmark::DoNotOptimize(math.add(1, 2));
+    for (auto _ : state)
+    {
+        benchmark::DoNotOptimize(math.add(1, 2));
+    }
 }
 
 static void BM_MyMath_sub(benchmark::State& state)
 {
     math::Math math;
-    benchmark::DoNotOptimize(math.sub(1, 2));
+    for (auto _ : state)
+    {
+        benchmark::DoNotOptimize(math.sub(1, 2));
+    }
 }
 
 // Register the function as a benchmark
