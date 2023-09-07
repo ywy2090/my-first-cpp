@@ -29,6 +29,9 @@ include(CompilerSettings)
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
+# include BuildInfoGenerator
+include(ProjectSpdLog)
+
 # 基准测试
 if(BENCHMARKS)
     include(ProjectBenchmark)
