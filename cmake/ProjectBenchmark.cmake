@@ -14,6 +14,7 @@ ExternalProject_add(googlebenchmark
     LOG_DOWNLOAD true
     LOG_BUILD true
     LOG_INSTALL true
+    LOG_CONFIGURE true
     URL https://codeload.github.com/google/benchmark/zip/refs/tags/v1.8.2
     URL_HASH SHA256=0094b77c01e9973876f1831f76cbae43fdaf09b424e467dc4171abaa6884e455
     CMAKE_ARGS -DBENCHMARK_ENABLE_TESTING=OFF
