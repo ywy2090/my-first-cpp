@@ -10,5 +10,6 @@ endif(USE_LIBMATH)
 
 add_subdirectory(simple_c_demo)
 add_subdirectory(liblogger)
-add_subdirectory(leveldb_test)
+
+add_subdirectory(leveldb_demo)
 # TODO: add more modules
