@@ -11,5 +11,7 @@ file(GLOB_RECURSE SRCS *.cpp) # recurse wildcard all x.cpp files of the current 
 # executable file
 add_executable(${PROJECT_NAME} ${SRCS})
 
+add_compile_definitions(SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
+
 # link libraris for main excutable
 target_link_libraries(${PROJECT_NAME} PRIVATE ${MATH_TARGET} ${LOGGER_TARGET})
