@@ -6,9 +6,9 @@ ExternalProject_add(spdlog
     LOG_DOWNLOAD true
     LOG_BUILD true
     LOG_INSTALL true
-    TLS_VERIFY false
     URL https://github.com/gabime/spdlog/archive/refs/tags/v1.12.0.zip
     URL_HASH SHA256=6174bf8885287422a6c6a0312eb8a30e8d22bcfcee7c48a6d02d1835d7769232
+    TLS_VERIFY false
     CMAKE_ARGS -DSPDLOG_BUILD_ALL=OFF
     -DBUILD_SHARED_LIBS=OFF
     -DCMAKE_BUILD_TYPE=Release
@@ -19,9 +19,9 @@ ExternalProject_add(spdlog
     # INSTALL_DIR ${CMAKE_SOURCE_DIR}/deps/libs
 )
 
-# file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
-add_library(libspdlog STATIC IMPORTED GLOBAL)
-set_property(TARGET libspdlog PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libspdlog.a)
-set_property(TARGET libspdlog PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
+file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
+add_library(${LIB_SPDLOG_TARGET} STATIC IMPORTED GLOBAL)
+set_property(TARGET ${LIB_SPDLOG_TARGET} PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/${LIB_SPDLOG_TARGET}.a)
+set_property(TARGET ${LIB_SPDLOG_TARGET} PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
 
-add_dependencies(libspdlog spdlog)
+add_dependencies(${LIB_SPDLOG_TARGET} spdlog)

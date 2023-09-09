@@ -20,9 +20,9 @@ ExternalProject_add(leveldb
     # INSTALL_DIR ${CMAKE_SOURCE_DIR}/deps/libs
 )
 
-# file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
-add_library(libleveldb STATIC IMPORTED GLOBAL)
-set_property(TARGET libleveldb PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libleveldb.a)
-set_property(TARGET libleveldb PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
+file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
+add_library(${LIB_LEVELDB_TARGET} STATIC IMPORTED GLOBAL)
+set_property(TARGET ${LIB_LEVELDB_TARGET} PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libleveldb.a)
+set_property(TARGET ${LIB_LEVELDB_TARGET} PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
 
-add_dependencies(libleveldb leveldb)
+add_dependencies(${LIB_LEVELDB_TARGET} leveldb)
