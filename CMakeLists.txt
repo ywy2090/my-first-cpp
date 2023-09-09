@@ -1,5 +1,5 @@
 # cmake version require
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.14)
 
 set(PROJECT_NAME my-first-cpp)
 
@@ -7,7 +7,7 @@ set(VERSION "1.0.0")
 set(VERSION_SUFFIX "-beta")
 
 # project name version
-project(${PROJECT_NAME} VERSION ${VERSION} LANGUAGES CXX)
+project(${PROJECT_NAME} VERSION ${VERSION} LANGUAGES C CXX)
 
 # Release Debug RelWithDebInfo MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
@@ -52,7 +52,7 @@ include(ProjectLeveldb)
 # add include directories
 # include_directories(path/to/include/dir)
 # link_directories(path/to/library/dir)
-# target_name目标单独添加include目录
+# target_name add include directories for target
 # target_include_directories(target_name PUBLIC path/to/include/dir)
 # target_link_directories(target_name PUBLIC path/to/library/dir)
 

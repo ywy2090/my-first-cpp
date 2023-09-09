@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.14)
 
 # file(GLOB SRCS *.cpp) # wildcard all x.cpp files of the current dir
 file(GLOB_RECURSE SRCS *.cpp) # recurse wildcard all x.cpp files of the current dir
