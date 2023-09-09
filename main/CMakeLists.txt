@@ -1,19 +1,15 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-# file(GLOB SRCS *.cpp) # 匹配当前目录下的.cpp文件
-file(GLOB_RECURSE SRCS *.cpp) # 匹配当前目录所有子目录的.cpp文件
+# file(GLOB SRCS *.cpp) # wildcard all x.cpp files of the current dir
+file(GLOB_RECURSE SRCS *.cpp) # recurse wildcard all x.cpp files of the current dir
 
-# 添加vcpkg依赖
+# find deps by find_package
 # find_package(fmt REQUIRED)
 # find_package(range-v3 REQUIRED)
 # find_package(cxxopts REQUIRED)
 
-set(CXX_VISIBILITY_PRESET OFF)
-
-# 可执行程序
+# executable file
 add_executable(${PROJECT_NAME} ${SRCS})
 
 # link libraris for main excutable
-target_link_libraries(${PROJECT_NAME} PRIVATE ${MATH_TARGET} ${LIB_SPDLOG_TARGET})
-
-add_dependencies(${PROJECT_NAME} ${LIB_SPDLOG_TARGET})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${MATH_TARGET} ${LOGGER_TARGET})

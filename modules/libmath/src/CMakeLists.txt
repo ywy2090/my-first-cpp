@@ -1,31 +1,18 @@
 cmake_minimum_required(VERSION 3.10.0)
 
-# 通配符
+# wildcard
 # file(GLOB SRCS *.cpp)
 file(GLOB_RECURSE SRCS *.cpp)
 
 add_library(${MATH_TARGET} ${SRCS})
 
-# 添加include目录
+# add include directory
 target_include_directories(${MATH_TARGET} PUBLIC .)
-# 添加链接库
+# add link libraries
 # target_link_libraries(${MATH_TARGET} PUBLIC jsoncpp_static OpenSSL::SSL OpenSSL::Crypto)
 
-
-# 打印一些常用的目录
-# message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
-# message(STATUS "CMAKE_BINARY_DIR => ${CMAKE_BINARY_DIR}")
-# message(STATUS "CMAKE_LIB_DIR => ${CMAKE_LIB_DIR}")
-# message(STATUS "CMAKE_INCLUDE_DIR => ${CMAKE_INCLUDE_DIR}")
-# message(STATUS "CMAKE_INSTALL_LIBDIR => ${CMAKE_INSTALL_LIBDIR}")
-# message(STATUS "CMAKE_INSTALL_INCLUDEDIR => ${CMAKE_INSTALL_INCLUDEDIR}")
-# message(STATUS "CMAKE_CURRENT_LIST_DIR => ${CMAKE_CURRENT_LIST_DIR}")
-# message(STATUS "CMAKE_CURRENT_SOURCE_DIR => ${CMAKE_CURRENT_SOURCE_DIR}")
-# message(STATUS "CMAKE_CURRENT_BINARY_DIR => ${CMAKE_CURRENT_BINARY_DIR}")
-
-
-# 安装库
+# install library
 # install(TARGETS ${MATH_TARGET} EXPORT mathTargets ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
 install(TARGETS ${MATH_TARGET} ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
-# 安装头文件
+# install head files
 install(DIRECTORY ${MATH_TARGET} DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/" FILES_MATCHING PATTERN "*.h")
