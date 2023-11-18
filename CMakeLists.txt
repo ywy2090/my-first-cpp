@@ -45,6 +45,7 @@ include(ProjectSpdLog)
 # benchmark
 if(BENCHMARKS)
     include(ProjectBenchmark)
+    add_subdirectory(benchmarks)
 endif(BENCHMARKS)
 
 include(ProjectLeveldb)

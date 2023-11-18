@@ -28,8 +28,8 @@ ExternalProject_add(googlebenchmark
 )
 
 # file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
-add_library(libbenchmark STATIC IMPORTED GLOBAL)
-set_property(TARGET libbenchmark PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libbenchmark.a)
-set_property(TARGET libbenchmark PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
+add_library(benchmark::benchmark STATIC IMPORTED GLOBAL)
+set_property(TARGET benchmark::benchmark PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libbenchmark.a)
+set_property(TARGET benchmark::benchmark PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
 
-add_dependencies(libbenchmark googlebenchmark)
+add_dependencies(benchmark::benchmark googlebenchmark)

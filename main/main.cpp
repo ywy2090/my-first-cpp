@@ -62,10 +62,10 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    {
-        math::Math math;
-        std::cout << "1 + 2 = " << math.add(1, 2) << std::endl;
-    }
+    // {
+    //     math::Math math;
+    //     std::cout << "1 + 2 = " << math.add(1, 2) << std::endl;
+    // }
 
     // start log
     auto& logger = octo::logger::Logger::getInstance();
