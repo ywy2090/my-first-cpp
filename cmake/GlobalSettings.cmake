@@ -4,6 +4,7 @@ set(LOGGER_TARGET "logger")
 
 set(LIB_LEVELDB_TARGET "libleveldb")
 set(LIB_SPDLOG_TARGET "libspdlog")
+set(LIB_CONCURRENTQUQUE_TARGET "libconcurrentqueue")
 
 message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 

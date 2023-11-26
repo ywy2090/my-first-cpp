@@ -39,8 +39,12 @@ include(CompilerSettings)
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
-# include BuildInfoGenerator
+# include ProjectSpdLog
 include(ProjectSpdLog)
+
+# include ProjectConcurrentQueue
+include(ProjectConcurrentQueue)
+
 
 # benchmark
 if(BENCHMARKS)
