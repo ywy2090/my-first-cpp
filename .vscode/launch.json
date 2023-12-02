@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "preLaunchTask": "CMake: build",
             "type": "lldb",
             "request": "custom",
             "name": "Custom launch",
@@ -15,14 +16,6 @@
                 "settings set target.run-args value1 value2 value3",
                 "process launch"
             ]
-        },
-        {
-            "type": "lldb",
-            "request": "launch",
-            "name": "Launch",
-            "program": "${workspaceFolder}/build/main/my-first-cpp",
-            "args": ["-v"],
-            "cwd": "${workspaceFolder}"
         }
     ]
 }
