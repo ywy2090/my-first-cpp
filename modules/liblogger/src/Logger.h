@@ -22,14 +22,14 @@ struct LogConf
 
 class Logger
 {
-private:
+public:
     Logger() = default;
     Logger(const Logger&) = delete;
     Logger(Logger&&) = delete;
     Logger& operator=(const Logger&) = delete;
     Logger&& operator=(Logger&&) = delete;
-    virtual ~Logger() { stopLog(); }
 
+    virtual ~Logger() noexcept { this->stopLog(); }
 
 public:
     std::shared_ptr<spdlog::logger> spdlog() const { return m_spdlog; }

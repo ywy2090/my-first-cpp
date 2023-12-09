@@ -6,6 +6,6 @@ file(GLOB_RECURSE SRCS *.c)
 
 set(SIMPLE_C_DEMO_TARGET simple-c-demo)
 
-# 测试程序
+# test template program for c
 add_executable(${SIMPLE_C_DEMO_TARGET} ${SRCS})
 target_compile_options(${SIMPLE_C_DEMO_TARGET} PRIVATE -std=c99)

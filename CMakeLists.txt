@@ -9,7 +9,7 @@ set(VERSION_SUFFIX "-beta")
 # project name version
 project(${PROJECT_NAME} VERSION ${VERSION} LANGUAGES C CXX)
 
-# Release Debug RelWithDebInfo MinSizeRel
+# build type: Release Debug RelWithDebInfo MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 endif()
@@ -32,19 +32,20 @@ message(STATUS "PROJECT_BINARY_DIR => ${PROJECT_BINARY_DIR}")
 
 # include GlobalSettings
 include(GlobalSettings)
-
 # include CompilerSettings
 include(CompilerSettings)
-
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
-# include ProjectSpdLog
+## ----------------- third party deps begin ------------------------------
+# spdLog
 include(ProjectSpdLog)
-
-# include ProjectConcurrentQueue
+# concurrent-queue
 include(ProjectConcurrentQueue)
-
+# nlohmann json
+include(ProjectNlohmannJson) 
+# leveldb
+include(ProjectLeveldb)
 
 # benchmark
 if(BENCHMARKS)
@@ -52,11 +53,9 @@ if(BENCHMARKS)
     add_subdirectory(benchmarks)
 endif(BENCHMARKS)
 
-include(ProjectLeveldb)
+## ----------------- third party deps end ------------------------------
 
-# add include directories
-# include_directories(path/to/include/dir)
-# link_directories(path/to/library/dir)
+# TODO: target_xxx_xxx sample
 # target_name add include directories for target
 # target_include_directories(target_name PUBLIC path/to/include/dir)
 # target_link_directories(target_name PUBLIC path/to/library/dir)

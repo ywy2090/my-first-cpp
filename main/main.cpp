@@ -1,19 +1,12 @@
-#include "BuildInfo.h"
+
 #include "Common.h"
 #include "Logger.h"
 #include "MyMath.h"
+#include "usage.h"
 #include <cstring>
 #include <iostream>
+#include <nlohmann/json.hpp>
 
-void printVersion()
-{
-    std::cout << "Project Version    : " << PROJECT_PROJECT_VERSION << std::endl;
-    std::cout << "Build Time         : " << PROJECT_BUILD_TIME << std::endl;
-    std::cout << "Build Type         : " << PROJECT_BUILD_PLATFORM << "/" << PROJECT_BUILD_TYPE
-              << std::endl;
-    std::cout << "Git Branch         : " << PROJECT_BUILD_BRANCH << std::endl;
-    std::cout << "Git Commit         : " << PROJECT_COMMIT_HASH << std::endl;
-}
 
 /*
 #include <fmt/format.h>
@@ -58,7 +51,7 @@ int main(int argc, char* argv[])
 {
     if (argc >= 2 && ((0 == strncmp(argv[1], "-v", 2) || 0 == strncmp(argv[1], "--version", 8))))
     {
-        printVersion();
+        initializer::printVersion();
         return 0;
     }
 
@@ -88,6 +81,15 @@ int main(int argc, char* argv[])
     LOG_TRACE("Some trace message with param {}", 42);
     LOG_DEBUG("Some debug message");
     LOG_CRITICAL("Some debug message");
+
+
+    {
+        nlohmann::json j = R"({ "happy": true, "pi": 3.141 })";
+        std::string jsonString = j.dump();
+        std::cout << "json => " << jsonString << std::endl;
+        // Rest of your code...
+    }
+
 
     return 0;
 }
