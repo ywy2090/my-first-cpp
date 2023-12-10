@@ -27,7 +27,7 @@ ExternalProject_add(googlebenchmark
     # INSTALL_DIR ${CMAKE_SOURCE_DIR}/deps/libs
 )
 
-# file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
+file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
 add_library(benchmark::benchmark STATIC IMPORTED GLOBAL)
 set_property(TARGET benchmark::benchmark PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libbenchmark.a)
 set_property(TARGET benchmark::benchmark PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})

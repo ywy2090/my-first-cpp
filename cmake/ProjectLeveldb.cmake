@@ -21,8 +21,8 @@ ExternalProject_add(leveldb
 )
 
 file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
-add_library(${LIB_LEVELDB_TARGET} STATIC IMPORTED GLOBAL)
-set_property(TARGET ${LIB_LEVELDB_TARGET} PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libleveldb.a)
-set_property(TARGET ${LIB_LEVELDB_TARGET} PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
+add_library(leveldb::leveldb STATIC IMPORTED GLOBAL)
+set_property(TARGET leveldb::leveldb PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libleveldb.a)
+set_property(TARGET leveldb::leveldb PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
 
-add_dependencies(${LIB_LEVELDB_TARGET} leveldb)
+add_dependencies(leveldb::leveldb leveldb)

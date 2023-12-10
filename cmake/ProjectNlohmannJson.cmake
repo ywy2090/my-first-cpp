@@ -20,9 +20,9 @@ ExternalProject_add(nlohmann-json
 
 # nlohmann_json::nlohmann_json
 file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
-add_library(${LIB_JSON_TARGET} STATIC IMPORTED GLOBAL)
+add_library(nlohmann::json INTERFACE IMPORTED GLOBAL)
 # head only
-# set_property(TARGET ${LIB_JSON_TARGET} PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/${LIB_JSON_TARGET}.a)
-set_property(TARGET ${LIB_JSON_TARGET} PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
+# set_property(TARGET nlohmann::json PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/${LIB_JSON_TARGET}.a)
+set_property(TARGET nlohmann::json PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
 
-add_dependencies(${LIB_JSON_TARGET} nlohmann-json)
+add_dependencies(nlohmann::json nlohmann-json)

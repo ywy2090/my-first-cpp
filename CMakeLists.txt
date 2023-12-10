@@ -44,6 +44,8 @@ include(ProjectSpdLog)
 include(ProjectConcurrentQueue)
 # nlohmann json
 include(ProjectNlohmannJson) 
+# jsoncpp
+include(ProjectJsonCpp) 
 # leveldb
 include(ProjectLeveldb)
 

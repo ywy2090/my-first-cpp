@@ -9,7 +9,7 @@ template <size_t M, size_t N>
 class LocalityPrincipleFixture : public benchmark::Fixture
 {
 public:
-    void SetUp(const benchmark::State& state)
+    void SetUp(const benchmark::State& state) override
     {
         for (size_t i = 0; i < M; i++)
         {
@@ -23,7 +23,7 @@ public:
     inline size_t getM() const { return M; }
     inline size_t getN() const { return N; }
 
-    void TearDown(const ::benchmark::State& state) {}
+    void TearDown(const ::benchmark::State& state) override {}
 
 protected:
     int intArray[M][N] = {};
@@ -66,6 +66,3 @@ BENCHMARK_TEMPLATE_F(LocalityPrincipleFixture, notLpTest, 10000, 10000)(benchmar
 
 // BENCHMARK_REGISTER_F(LocalityPrincipleFixture, lpTest)->Name("LocalityPrinciple");
 // BENCHMARK_REGISTER_F(LocalityPrincipleFixture, notLpTest)->Name("NotLocalityPrinciple");
-
-
-BENCHMARK_MAIN();
