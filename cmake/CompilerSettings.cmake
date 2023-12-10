@@ -1,32 +1,32 @@
 # add_definitions(-Wno-unused-value -Wunused-parameter)
 
-# 将 C++ 标准设置为 C++14
-set(CMAKE_CXX_STANDARD 14)
+# C++17
+set(CMAKE_CXX_STANDARD 17)
 
-# C++14 是强制要求，不会衰退至低版本
+# force C++14
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 禁止使用编译器特有扩展
+# disable c++ extensions
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# 打印系统、架构信息
+# show compiler system information
 message(STATUS "COMPILER_ID => ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CMAKE_SYSTEM_NAME => ${CMAKE_SYSTEM_NAME}")
 message(STATUS "CMAKE_SYSTEM_PROCESSOR => ${CMAKE_SYSTEM_PROCESSOR}")
 
-# 大小端序
+# big little endian
 message(STATUS "CMAKE_CXX_BYTE_ORDER => ${CMAKE_CXX_BYTE_ORDER}")
 message(STATUS "CMAKE_C_BYTE_ORDER => ${CMAKE_C_BYTE_ORDER}")
 
-if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    message(STATUS "Target is 64 bits")
-else()
-    message(STATUS " Target is 32 bits")
-endif()
+# if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+#     message(STATUS "Target is 64 bits")
+# else()
+#     message(STATUS " Target is 32 bits")
+# endif()
 
 # GUN or Clang
 if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
-    # 编译缓存
+    # compile cache
     find_program(CCACHE_PROGRAM ccache)
 
     if(CCACHE_PROGRAM)
@@ -34,7 +34,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
         set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CCACHE_PROGRAM}")
     endif()
 
-    # 设置编译选项
+    # compiler options
     add_compile_options(-Werror)
     add_compile_options(-Wall)
     add_compile_options(-pedantic)
@@ -53,7 +53,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden")
     endif()
 
-    # 静态编译选项
+    # static compiler options
     # if(BUILD_STATIC)
     # SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
     # SET(BUILD_SHARED_LIBRARIES OFF)
@@ -70,7 +70,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
     # Configuration-specific compiler settings.
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
     set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -DNDEBUG")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -DNDEBUG")
 
     if("${LINKER}" MATCHES "gold")
@@ -115,7 +115,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
         endif()
     endif()
 
-    # 内存分析
+    # memory analysis
     if(SANITIZE_ADDRESS)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined -fno-sanitize=alignment -fsanitize-address-use-after-scope -fsanitize-recover=all")
     endif()
@@ -140,7 +140,7 @@ else()
     message(WARNING "Your compiler is not tested, if you run into any issues, we'd welcome any patches.")
 endif()
 
-# 内存分配器
+# memory allocator
 # if(ALLOCATOR STREQUAL "tcmalloc")
 # # include(FindPkgConfig)
 # # pkg_check_modules(tcmalloc REQUIRED libtcmalloc)

@@ -11,7 +11,7 @@ project(${PROJECT_NAME} VERSION ${VERSION} LANGUAGES C CXX)
 
 # build type: Release Debug RelWithDebInfo MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+    set(CMAKE_BUILD_TYPE Release)
 endif()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
