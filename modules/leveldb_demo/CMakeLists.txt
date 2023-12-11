@@ -1,22 +1,18 @@
 cmake_minimum_required(VERSION 3.14)
-
 project(leveldb-test)
 
 file(GLOB_RECURSE SRCS *.cpp)
 
 set(LEVELDB_TEST_TARGET leveldb-test)
 
-get_target_property(LEVELDB_LIB_DIR leveldb::leveldb IMPORTED_LOCATION)
-get_target_property(LEVELDB_INCLUDE_DIR leveldb::leveldb INTERFACE_INCLUDE_DIRECTORIES)
-
 # leveldb test
 add_executable(${LEVELDB_TEST_TARGET} ${SRCS})
+
 # target_compile_options(${LEVELDB_TEST_TARGET} PRIVATE -std=c99)
 
 # Link Leveldb to the project
-target_link_libraries(${LEVELDB_TEST_TARGET} ${MATH_TARGET} ${LEVELDB_LIB_DIR})
+target_link_libraries(${LEVELDB_TEST_TARGET} ${MATH_TARGET} leveldb::leveldb)
 
-# include dir
-target_include_directories(${LEVELDB_TEST_TARGET} PRIVATE ${LEVELDB_INCLUDE_DIR})
-
+# Include Directories
+# target_include_directories(${LEVELDB_TEST_TARGET} PRIVATE ...)
 add_dependencies(${LEVELDB_TEST_TARGET} leveldb::leveldb)

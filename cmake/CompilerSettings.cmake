@@ -19,9 +19,9 @@ message(STATUS "CMAKE_CXX_BYTE_ORDER => ${CMAKE_CXX_BYTE_ORDER}")
 message(STATUS "CMAKE_C_BYTE_ORDER => ${CMAKE_C_BYTE_ORDER}")
 
 # if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-#     message(STATUS "Target is 64 bits")
+# message(STATUS "Target is 64 bits")
 # else()
-#     message(STATUS " Target is 32 bits")
+# message(STATUS " Target is 32 bits")
 # endif()
 
 # GUN or Clang
@@ -68,6 +68,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
     # endif()
 
     # Configuration-specific compiler settings.
+    # for details: cmake --system-information | grep CMAKE_CXX_FLAGS
     set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
     set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
     set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
