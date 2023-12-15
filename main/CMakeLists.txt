@@ -14,4 +14,4 @@ add_executable(${PROJECT_NAME} ${SRCS})
 add_compile_definitions(SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 
 # link libraris for main excutable
-target_link_libraries(${PROJECT_NAME} PRIVATE ${MATH_TARGET} ${LOGGER_TARGET})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${MATH_TARGET} ${LOGGER_TARGET} nlohmann::json)

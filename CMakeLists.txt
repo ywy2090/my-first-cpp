@@ -16,10 +16,13 @@ endif()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+find_package(Threads REQUIRED)
+
 # add cmake module files
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 message(STATUS "CMAKE_MODULE_PATH => ${CMAKE_MODULE_PATH}")
 message(STATUS "PROJECT_BINARY_DIR => ${PROJECT_BINARY_DIR}")
+
 # message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 # message(STATUS "CMAKE_BINARY_DIR => ${CMAKE_BINARY_DIR}")
 # message(STATUS "CMAKE_LIB_DIR => ${CMAKE_LIB_DIR}")
@@ -32,20 +35,26 @@ message(STATUS "PROJECT_BINARY_DIR => ${PROJECT_BINARY_DIR}")
 
 # include GlobalSettings
 include(GlobalSettings)
+
 # include CompilerSettings
 include(CompilerSettings)
+
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
-## ----------------- third party deps begin ------------------------------
+# # ----------------- third party deps begin ------------------------------
 # spdLog
 include(ProjectSpdLog)
+
 # concurrent-queue
 include(ProjectConcurrentQueue)
+
 # nlohmann json
-include(ProjectNlohmannJson) 
+include(ProjectNlohmannJson)
+
 # jsoncpp
-include(ProjectJsonCpp) 
+include(ProjectJsonCpp)
+
 # leveldb
 include(ProjectLeveldb)
 
@@ -55,7 +64,7 @@ if(BENCHMARKS)
     add_subdirectory(benchmarks)
 endif(BENCHMARKS)
 
-## ----------------- third party deps end ------------------------------
+# # ----------------- third party deps end ------------------------------
 
 # TODO: target_xxx_xxx sample
 # target_name add include directories for target

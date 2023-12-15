@@ -14,10 +14,6 @@ message(STATUS "COMPILER_ID => ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CMAKE_SYSTEM_NAME => ${CMAKE_SYSTEM_NAME}")
 message(STATUS "CMAKE_SYSTEM_PROCESSOR => ${CMAKE_SYSTEM_PROCESSOR}")
 
-# big little endian
-message(STATUS "CMAKE_CXX_BYTE_ORDER => ${CMAKE_CXX_BYTE_ORDER}")
-message(STATUS "CMAKE_C_BYTE_ORDER => ${CMAKE_C_BYTE_ORDER}")
-
 # if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 # message(STATUS "Target is 64 bits")
 # else()
@@ -47,10 +43,12 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
 
     if(NOT APPLE)
         set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+        set(CMAKE_C_VISIBILITY_PRESET hidden)
 
         # add_compile_options(-fvisibility=hidden)
         # add_compile_options(-fvisibility-inlines-hidden)
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden")
+        set(CMAKE_C_FLAGS "-pthread")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden -pthread")
     endif()
 
     # static compiler options
@@ -69,11 +67,10 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
 
     # Configuration-specific compiler settings.
     # for details: cmake --system-information | grep CMAKE_CXX_FLAGS
-    set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-    set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
-    set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -DNDEBUG")
-
+    # set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
+    # set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
+    # set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
+    # set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -DNDEBUG")
     if("${LINKER}" MATCHES "gold")
         execute_process(COMMAND ${CMAKE_C_COMPILER} -fuse-ld=gold -Wl,--version ERROR_QUIET OUTPUT_VARIABLE LD_VERSION)
 
