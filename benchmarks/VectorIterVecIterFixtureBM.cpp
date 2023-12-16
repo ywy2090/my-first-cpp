@@ -12,10 +12,7 @@ public:
     VecIterFixture() { m_iterArray.resize(0xFF); }
 
 public:
-    void SetUp(const ::benchmark::State& state) override
-    {
-        // std::cout << "SetUp m_array size: " << m_array.size() << std::endl;
-    }
+    void SetUp(const ::benchmark::State& state) override {}
 
     void TearDown(const ::benchmark::State& state) override {}
 
@@ -23,7 +20,7 @@ protected:
     std::vector<int> m_iterArray;
 };
 
-BENCHMARK_DEFINE_F(VecIterFixture, iterateByIndexTest)(benchmark::State& state)
+BENCHMARK_DEFINE_F(VecIterFixture, BM_IterateByIndexTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -36,7 +33,7 @@ BENCHMARK_DEFINE_F(VecIterFixture, iterateByIndexTest)(benchmark::State& state)
     }
 }
 
-BENCHMARK_DEFINE_F(VecIterFixture, iterateByRangeTest)(benchmark::State& state)
+BENCHMARK_DEFINE_F(VecIterFixture, BM_IterateByRangeTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -48,7 +45,7 @@ BENCHMARK_DEFINE_F(VecIterFixture, iterateByRangeTest)(benchmark::State& state)
     }
 }
 
-BENCHMARK_DEFINE_F(VecIterFixture, iterateByPointerTest)(benchmark::State& state)
+BENCHMARK_DEFINE_F(VecIterFixture, BM_IterateByPointerTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -61,6 +58,6 @@ BENCHMARK_DEFINE_F(VecIterFixture, iterateByPointerTest)(benchmark::State& state
     }
 }
 
-BENCHMARK_REGISTER_F(VecIterFixture, iterateByIndexTest);
-BENCHMARK_REGISTER_F(VecIterFixture, iterateByRangeTest);
-BENCHMARK_REGISTER_F(VecIterFixture, iterateByPointerTest);
+BENCHMARK_REGISTER_F(VecIterFixture, BM_IterateByIndexTest);
+BENCHMARK_REGISTER_F(VecIterFixture, BM_IterateByRangeTest);
+BENCHMARK_REGISTER_F(VecIterFixture, BM_IterateByPointerTest);

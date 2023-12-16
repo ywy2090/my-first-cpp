@@ -15,45 +15,7 @@ public:
 
     void TearDown(const ::benchmark::State& state) override {}
 
-    // for moodycamel::ConcurrentQueue
-    inline void runConcurrentQueue(benchmark::State& state, int threadIndex)
-    {
-        if ((threadIndex % 2) != 0)
-        {
-            // enqueue
-            m_concurrentQueue.enqueue(1);
-        }
-        else
-        {
-            // dequeue
-            int out{0};
-            bool result = m_concurrentQueue.try_dequeue(out);
-            benchmark::DoNotOptimize(out);
-            benchmark::DoNotOptimize(result);
-        }
-    }
-
-    // for mutex queue
-    inline void runMutexQueue(benchmark::State& state, int threadIndex)
-    {
-        if ((threadIndex % 2) != 0)
-        {
-            // enqueue
-            std::lock_guard<std::mutex> lock(x_queue);
-            m_queue.push(1);
-        }
-        else
-        {
-            // dequeue
-            std::lock_guard<std::mutex> lock(x_queue);
-            if (!m_queue.empty())
-            {
-                m_queue.pop();
-            }
-        }
-    }
-
-protected:
+public:
     // moodycamel::ConcurrentQueue
     moodycamel::ConcurrentQueue<int> m_concurrentQueue;
 
@@ -71,7 +33,7 @@ protected:
 };
 
 
-BENCHMARK_DEFINE_F(ProducerConsumerFixture, concurrentQueueTest)(benchmark::State& state)
+BENCHMARK_DEFINE_F(ProducerConsumerFixture, BM_ConcurrentQueueTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -92,7 +54,7 @@ BENCHMARK_DEFINE_F(ProducerConsumerFixture, concurrentQueueTest)(benchmark::Stat
     }
 }
 
-BENCHMARK_DEFINE_F(ProducerConsumerFixture, mutexQueueTest)(benchmark::State& state)
+BENCHMARK_DEFINE_F(ProducerConsumerFixture, BM_MutexQueueTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -118,7 +80,7 @@ BENCHMARK_DEFINE_F(ProducerConsumerFixture, mutexQueueTest)(benchmark::State& st
 }
 
 
-BENCHMARK_DEFINE_F(ProducerConsumerFixture, mutexListTest)(benchmark::State& state)
+BENCHMARK_DEFINE_F(ProducerConsumerFixture, BM_MutexListTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -144,8 +106,8 @@ BENCHMARK_DEFINE_F(ProducerConsumerFixture, mutexListTest)(benchmark::State& sta
 }
 
 /* enqueueTest is NOT registered */
-BENCHMARK_REGISTER_F(ProducerConsumerFixture, concurrentQueueTest)->ThreadRange(2, 64);
-BENCHMARK_REGISTER_F(ProducerConsumerFixture, mutexQueueTest)->ThreadRange(2, 64);
-BENCHMARK_REGISTER_F(ProducerConsumerFixture, mutexListTest)->ThreadRange(2, 64);
+BENCHMARK_REGISTER_F(ProducerConsumerFixture, BM_ConcurrentQueueTest)->ThreadRange(2, 64);
+BENCHMARK_REGISTER_F(ProducerConsumerFixture, BM_MutexQueueTest)->ThreadRange(2, 64);
+BENCHMARK_REGISTER_F(ProducerConsumerFixture, BM_MutexListTest)->ThreadRange(2, 64);
 
 // BENCHMARK_MAIN();

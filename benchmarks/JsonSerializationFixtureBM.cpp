@@ -7,22 +7,6 @@
 // https://github.com/open-source-parsers/jsoncpp
 // https://github.com/nlohmann/json
 
-
-/*
-{
-    "name" : "zhangyuge",
-    "age" : 10,
-    "sex" : "male"
-}
-*/
-
-const static std::string jsonStr =
-    "{\
-					\"name\":\"Cain\",\
-					\"age\":23,\
-					\"sex\":\"man\"\
-					}";
-
 struct Person
 {
     std::string name;
@@ -31,7 +15,24 @@ struct Person
 };
 
 
-static void BM_JsonCPP_encode(benchmark::State& state)
+class JsonSerializationFixture : public benchmark::Fixture
+{
+public:
+    void SetUp(const benchmark::State& state) override {}
+
+    void TearDown(const ::benchmark::State& state) override {}
+
+public:
+    const std::string m_jsonStr =
+        "{\
+					\"name\":\"Cain\",\
+					\"age\":23,\
+					\"sex\":\"man\"\
+					}";
+};
+
+
+BENCHMARK_DEFINE_F(JsonSerializationFixture, BM_JsonCppEncodeTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -46,7 +47,7 @@ static void BM_JsonCPP_encode(benchmark::State& state)
     }
 }
 
-static void BM_JsonCPP_decode(benchmark::State& state)
+BENCHMARK_DEFINE_F(JsonSerializationFixture, BM_JsonCppDecodeTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -54,7 +55,7 @@ static void BM_JsonCPP_decode(benchmark::State& state)
         Json::Value value;
 
         Person person;
-        if (reader.parse(jsonStr, value))
+        if (reader.parse(m_jsonStr, value))
         {
             person.name = value["name"].asString();
             person.age = value["age"].asInt();
@@ -67,8 +68,7 @@ static void BM_JsonCPP_decode(benchmark::State& state)
     }
 }
 
-
-static void BM_nlohmannJson_encode(benchmark::State& state)
+BENCHMARK_DEFINE_F(JsonSerializationFixture, BM_NlohmannJsonEncodeTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -84,12 +84,12 @@ static void BM_nlohmannJson_encode(benchmark::State& state)
     }
 }
 
-static void BM_nlohmannJson_decode(benchmark::State& state)
+BENCHMARK_DEFINE_F(JsonSerializationFixture, BM_NlohmannJsonDecodeTest)(benchmark::State& state)
 {
     for (auto _ : state)
     {
         Person person;
-        nlohmann::json j = nlohmann::json::parse(jsonStr, nullptr, false);
+        nlohmann::json j = nlohmann::json::parse(m_jsonStr, nullptr, false);
 
         person.name = j["name"];
         person.age = j["age"];
@@ -102,7 +102,7 @@ static void BM_nlohmannJson_decode(benchmark::State& state)
 
 
 // Register the function as a benchmark
-BENCHMARK(BM_JsonCPP_encode);
-BENCHMARK(BM_JsonCPP_decode);
-BENCHMARK(BM_nlohmannJson_encode);
-BENCHMARK(BM_nlohmannJson_decode);
+BENCHMARK_REGISTER_F(JsonSerializationFixture, BM_JsonCppEncodeTest);
+BENCHMARK_REGISTER_F(JsonSerializationFixture, BM_JsonCppDecodeTest);
+BENCHMARK_REGISTER_F(JsonSerializationFixture, BM_NlohmannJsonEncodeTest);
+BENCHMARK_REGISTER_F(JsonSerializationFixture, BM_NlohmannJsonDecodeTest);

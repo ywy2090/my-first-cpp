@@ -9,28 +9,19 @@ template <size_t M, size_t N>
 class LocalityPrincipleFixture : public benchmark::Fixture
 {
 public:
-    void SetUp(const benchmark::State& state) override
-    {
-        for (size_t i = 0; i < M; i++)
-        {
-            for (size_t j = 0; j < N; j++)
-            {
-                intArray[i][j] = i * 10 + j;
-            }
-        }
-    }
+    void SetUp(const benchmark::State& state) override {}
+    void TearDown(const ::benchmark::State& state) override {}
 
     inline size_t getM() const { return M; }
     inline size_t getN() const { return N; }
 
-    void TearDown(const ::benchmark::State& state) override {}
-
-protected:
-    int intArray[M][N] = {};
+public:
+    int m_intArray[M][N] = {};
 };
 
 
-BENCHMARK_TEMPLATE_F(LocalityPrincipleFixture, lpTest, 10000, 10000)(benchmark::State& state)
+BENCHMARK_TEMPLATE_F(LocalityPrincipleFixture, BM_LocalityPrincipleTest, 10000, 10000)
+(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -41,13 +32,15 @@ BENCHMARK_TEMPLATE_F(LocalityPrincipleFixture, lpTest, 10000, 10000)(benchmark::
         {
             for (size_t j = 0; j < n; j++)
             {
-                benchmark::DoNotOptimize(r = intArray[i][j]);
+                r = m_intArray[i][j];
+                benchmark::DoNotOptimize(r);
             }
         }
     }
 }
 
-BENCHMARK_TEMPLATE_F(LocalityPrincipleFixture, notLpTest, 10000, 10000)(benchmark::State& state)
+BENCHMARK_TEMPLATE_F(LocalityPrincipleFixture, BM_NotLocalityPrincipleTest, 10000, 10000)
+(benchmark::State& state)
 {
     for (auto _ : state)
     {
@@ -58,11 +51,9 @@ BENCHMARK_TEMPLATE_F(LocalityPrincipleFixture, notLpTest, 10000, 10000)(benchmar
         {
             for (size_t j = 0; j < n; j++)
             {
-                benchmark::DoNotOptimize(r = intArray[j][i]);
+                r = m_intArray[j][i];
+                benchmark::DoNotOptimize(r);
             }
         }
     }
 }
-
-// BENCHMARK_REGISTER_F(LocalityPrincipleFixture, lpTest)->Name("LocalityPrinciple");
-// BENCHMARK_REGISTER_F(LocalityPrincipleFixture, notLpTest)->Name("NotLocalityPrinciple");
