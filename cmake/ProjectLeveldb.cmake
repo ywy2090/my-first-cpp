@@ -8,7 +8,7 @@ ExternalProject_add(leveldb
     LOG_INSTALL true
     LOG_CONFIGURE true
     LOG_BUILD true
-    URL https://github.com/google/leveldb/archive/refs/tags/1.23.zip
+    URL https://${URL_PREFIX}/google/leveldb/archive/refs/tags/1.23.zip
     URL_HASH SHA256=a6fa7eebd11de709c46bf1501600ed98bf95439d6967963606cc964931ce906f
     CMAKE_ARGS -DLEVELDB_BUILD_TESTS=OFF
     -DBUILD_SHARED_LIBS=OFF

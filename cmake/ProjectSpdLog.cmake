@@ -6,7 +6,7 @@ ExternalProject_add(spdlog
     LOG_DOWNLOAD true
     LOG_BUILD true
     LOG_INSTALL true
-    URL https://github.com/gabime/spdlog/archive/refs/tags/v1.12.0.zip
+    URL https://${URL_PREFIX}/gabime/spdlog/archive/refs/tags/v1.12.0.zip
     URL_HASH SHA256=6174bf8885287422a6c6a0312eb8a30e8d22bcfcee7c48a6d02d1835d7769232
     TLS_VERIFY false
     CMAKE_ARGS -DSPDLOG_BUILD_ALL=OFF

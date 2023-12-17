@@ -6,7 +6,7 @@ ExternalProject_add(json-cpp
     LOG_DOWNLOAD true
     LOG_BUILD true
     LOG_INSTALL true
-    URL https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.5.zip
+    URL https://${URL_PREFIX}/open-source-parsers/jsoncpp/archive/refs/tags/1.9.5.zip
     URL_HASH SHA256=a074e1b38083484e8e07789fd683599d19da8bb960959c83751cd0284bdf2043
     TLS_VERIFY false
     CMAKE_ARGS -DJSONCPP_WITH_TESTS=OFF

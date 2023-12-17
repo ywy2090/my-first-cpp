@@ -6,7 +6,7 @@ ExternalProject_add(nlohmann-json
     LOG_DOWNLOAD true
     LOG_BUILD true
     LOG_INSTALL true
-    URL https://github.com/nlohmann/json/archive/refs/tags/v3.11.3.zip
+    URL https://${URL_PREFIX}/nlohmann/json/archive/refs/tags/v3.11.3.zip
     URL_HASH SHA256=04022b05d806eb5ff73023c280b68697d12b93e1b7267a0b22a1a39ec7578069
     TLS_VERIFY false
     CMAKE_ARGS -DJSON_BuildTests=OFF

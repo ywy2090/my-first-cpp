@@ -6,7 +6,7 @@ ExternalProject_add(concurrentqueue
     LOG_DOWNLOAD true
     LOG_BUILD true
     LOG_INSTALL true
-    URL https://github.com/cameron314/concurrentqueue/archive/refs/tags/v1.0.4.zip
+    URL https://${URL_PREFIX}/cameron314/concurrentqueue/archive/refs/tags/v1.0.4.zip
     URL_HASH SHA256=6874cb028c27bf0d00ebdb3784c65e0aae004f9ad287301708aa9d8b836be57a
     TLS_VERIFY false
     CMAKE_ARGS

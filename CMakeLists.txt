@@ -1,6 +1,7 @@
 # cmake version require
 cmake_minimum_required(VERSION 3.14)
 
+# project name
 set(PROJECT_NAME my-first-cpp)
 
 set(VERSION "1.0.0")
@@ -9,12 +10,15 @@ set(VERSION_SUFFIX "-beta")
 # project name version
 project(${PROJECT_NAME} VERSION ${VERSION} LANGUAGES C CXX)
 
+# download deps url prefix, default download from github.com
+if(NOT URL_PREFIX)
+    set(URL_PREFIX "github.com")
+endif(NOT URL_PREFIX)
+
 # build type: Release Debug RelWithDebInfo MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
-
-include(GNUInstallDirs)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/ar)
@@ -31,6 +35,9 @@ message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 message(STATUS "CMAKE_BINARY_DIR => ${CMAKE_BINARY_DIR}")
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR => ${CMAKE_CURRENT_SOURCE_DIR}")
 message(STATUS "CMAKE_CURRENT_BINARY_DIR => ${CMAKE_CURRENT_BINARY_DIR}")
+
+# include GNUInstallDirs
+include(GNUInstallDirs)
 
 # include GlobalSettings
 include(GlobalSettings)
