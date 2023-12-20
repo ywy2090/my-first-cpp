@@ -5,7 +5,7 @@
 #include <iterator>
 
 // https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array
-// !!! TODO: impossible to reproduce
+// !!! TODO: impossible to reproduce with -03 optimization level
 
 template <std::size_t N>
 class BranchPredicationFixtureBM : public benchmark::Fixture
