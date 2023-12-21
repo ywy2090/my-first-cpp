@@ -9,6 +9,7 @@ if(USE_LIBMATH)
 endif(USE_LIBMATH)
 
 add_subdirectory(liblogger)
+add_subdirectory(libcoro)
 add_subdirectory(simple_c_demo)
 add_subdirectory(leveldb_demo)
 # TODO: add more modules
