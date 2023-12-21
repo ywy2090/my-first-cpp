@@ -1,9 +1,9 @@
 # add_definitions(-Wno-unused-value -Wunused-parameter)
 
-# C++17
-set(CMAKE_CXX_STANDARD 17)
+# C++20
+set(CMAKE_CXX_STANDARD 20)
 
-# force C++14
+# force C++20
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # disable c++ extensions
@@ -13,12 +13,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 message(STATUS "COMPILER_ID => ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CMAKE_SYSTEM_NAME => ${CMAKE_SYSTEM_NAME}")
 message(STATUS "CMAKE_SYSTEM_PROCESSOR => ${CMAKE_SYSTEM_PROCESSOR}")
-
-# if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-# message(STATUS "Target is 64 bits")
-# else()
-# message(STATUS " Target is 32 bits")
-# endif()
 
 # GUN or Clang
 if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
