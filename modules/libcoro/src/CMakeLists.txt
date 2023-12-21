@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.14)
 # file(GLOB SRCS *.cpp)
 # file(GLOB_RECURSE SRCS *.cpp)
 
-set(CORO_GENERATOR_TARGET coro_generator)
+set(CORO_GENERATOR_TARGET coro-generator-sample)
 add_executable(${CORO_GENERATOR_TARGET} "CoroGenerator.cpp")
 
 # add include directory

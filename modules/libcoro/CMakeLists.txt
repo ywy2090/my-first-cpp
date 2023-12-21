@@ -12,4 +12,4 @@ endif(TESTS)
 # benchmark
 if(BENCHMARKS AND EXISTS benchmark)
     add_subdirectory(benchmark)
-endif(BENCHMARKS)
+endif(BENCHMARKS AND EXISTS benchmark)
