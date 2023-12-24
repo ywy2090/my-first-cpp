@@ -1,0 +1,26 @@
+include(ExternalProject)
+ExternalProject_add(readerwriterqueue
+    PREFIX ${THIRD_PARTY_DIR}
+    DOWNLOAD_NAME readerwriterqueue-1.0.6.zip
+    DOWNLOAD_NO_PROGRESS 1
+    LOG_DOWNLOAD true
+    LOG_BUILD true
+    LOG_INSTALL true
+    URL https://${URL_PREFIX}/cameron314/readerwriterqueue/archive/refs/tags/v1.0.6.zip
+    URL_HASH SHA256=253ae10bb6dd28da2bb7e7538b9d010bfd1914fcafff758e6d50ea5a475afcfa
+    TLS_VERIFY false
+    CMAKE_ARGS
+    -DBUILD_SHARED_LIBS=OFF
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX=${THIRD_PARTY_DIR}
+
+    # INSTALL_COMMAND ""
+    # INSTALL_DIR ${CMAKE_SOURCE_DIR}/deps/libs
+)
+
+file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
+add_library(${LIB_RWQUQUE_TARGET} STATIC IMPORTED GLOBAL)
+# set_property(TARGET ${LIB_RWQUQUE_TARGET} PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/${LIB_RWQUQUE_TARGET}.a)
+set_property(TARGET ${LIB_RWQUQUE_TARGET} PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})
+
+add_dependencies(${LIB_RWQUQUE_TARGET} readerwriterqueue)

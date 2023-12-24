@@ -4,6 +4,7 @@ set(LOGGER_TARGET "logger")
 
 set(LIB_SPDLOG_TARGET "libspdlog")
 set(LIB_CONCURRENTQUQUE_TARGET "libconcurrentqueue")
+set(LIB_RWQUQUE_TARGET "librwqueue")
 
 # message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 # message(STATUS "CMAKE_BINARY_DIR => ${CMAKE_BINARY_DIR}")

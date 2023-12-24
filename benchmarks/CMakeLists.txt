@@ -15,4 +15,4 @@ if("${CMAKE_SYSTEM_NAME}" MATCHES "Windows")
     target_link_libraries(${BENCHMARK_TARGET} Shlwapi)
 endif()
 
-add_dependencies(${BENCHMARK_TARGET} benchmark::benchmark jsoncpp_lib nlohmann::json)
+add_dependencies(${BENCHMARK_TARGET} benchmark::benchmark jsoncpp_lib nlohmann::json ${LIB_CONCURRENTQUQUE_TARGET} ${LIB_RWQUQUE_TARGET})

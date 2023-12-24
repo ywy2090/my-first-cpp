@@ -55,6 +55,9 @@ include(ProjectSpdLog)
 # concurrent-queue
 include(ProjectConcurrentQueue)
 
+# readwrite-queue
+include(ProjectReaderWriterQueue)
+
 # nlohmann json
 include(ProjectNlohmannJson)
 
