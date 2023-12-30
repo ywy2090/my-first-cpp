@@ -25,7 +25,7 @@ if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR("${CMAKE_CXX_COMPILER_ID}" MATC
     endif()
 
     # compiler options
-    add_compile_options(-Werror)
+    # add_compile_options(-Werror) # TODO: remove for compile asyncio
     add_compile_options(-Wall)
     add_compile_options(-pedantic)
     add_compile_options(-Wextra)

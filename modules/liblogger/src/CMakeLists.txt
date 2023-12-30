@@ -10,9 +10,9 @@ add_library(${LOGGER_TARGET} ${SRCS})
 target_include_directories(${LOGGER_TARGET} PUBLIC .)
 
 # link libraris for main excutable
-target_link_libraries(${LOGGER_TARGET} PUBLIC ${LIB_SPDLOG_TARGET})
+target_link_libraries(${LOGGER_TARGET} PUBLIC spdlog::spdlog)
 
-add_dependencies(${LOGGER_TARGET} ${LIB_SPDLOG_TARGET})
+add_dependencies(${LOGGER_TARGET} spdlog::spdlog)
 
 # install library
 # install(TARGETS ${LOGGER_TARGET} EXPORT mathTargets ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
