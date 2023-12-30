@@ -1,19 +1,27 @@
-# my-first-cpp
+# octopus-code
+
+## 1. download `vcpkg`:
+
 ```shell
-$ cmake ../ -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DTESTS=ON
-$ make
+$ git clone https://github.com/microsoft/vcpkg.git
 ```
 
-# 学习
-1. cmake文档
-2. vcpkg文档
-3. gtest，学会如何在c++中构造ut
-4. beachmark，学会如何在c++中进行基准测试
-5. c++20 规范
+## 2. set environment VCPKG_ROOT
+```shell
+export VCPKG_ROOT= vcpkg_dir
+export PATH=${VCPKG_ROOT}:${PATH}
+```
+
+## 3. compile
+
+```shell
+$ cmake  --preset=default
+$ cmake --build build
+```
 
 # TODO
-1. 集成`vcpkg`
-2. 集成常用的c++库, `Boost`、`JSON`、`Protocol Buffer`、`gtest`、`beachmark`等
-3. 优化使用姿势
-4. 添加ci, 支持多平台
+1. gtest and google-benchmark
+2. add support for c++20
+3. add ci for multiple platforms
+4. support windows
 
