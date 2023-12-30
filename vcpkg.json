@@ -1,7 +1,29 @@
 {
+  "name": "octopus-code",
+  "version-string": "1.0.0-beta",
+  "description": "octopus-code",
+  "homepage": "https://github.com/ywy2090/octopus-code",
+  "builtin-baseline": "c8696863d371ab7f46e213d8f5ca923c4aef2a00",
   "dependencies": [
-    "fmt",
     "concurrentqueue",
-    "readerwriterqueue"
+    {
+      "name": "fmt",
+      "version>=": "8.0.1"
+    },
+    "readerwriterqueue",
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ],
+  "overrides": [
+    {
+      "name": "fmt",
+      "version": "10.1.1"
+    }
   ]
 }
