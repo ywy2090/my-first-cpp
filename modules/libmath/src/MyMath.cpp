@@ -19,6 +19,5 @@ int Math::mul(int i, int j)
 
 int Math::div(int i, int j)
 {
-    // TODO: zero div
     return i / j;
 }
