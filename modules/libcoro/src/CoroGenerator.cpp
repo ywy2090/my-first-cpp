@@ -170,7 +170,10 @@ Generator<T> range(T first, const T last)
     std::cout << " => [range] in " << std::endl;
     while (first < last)
     {
-        co_yield first++;
+        co_yield first;
+        std::cout << " => [range] while loop "
+                  << " first : " << first << std::endl;
+        first++;
     }
 
     std::cout << " => [range] out " << std::endl;

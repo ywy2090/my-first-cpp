@@ -48,15 +48,7 @@ include(CompilerSettings)
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
-# # ----------------- third party deps begin ------------------------------
-# spdLog
-include(ProjectSpdLog)
-
-# concurrent-queue
-include(ProjectConcurrentQueue)
-
-# readwrite-queue
-include(ProjectReaderWriterQueue)
+# # ----------------- third party deps include begin ------------------------------
 
 # nlohmann json
 include(ProjectNlohmannJson)
@@ -67,13 +59,26 @@ include(ProjectJsonCpp)
 # leveldb
 include(ProjectLeveldb)
 
+# spdlog
+include(ProjectSpdLog)
+
 # benchmark
 if(BENCHMARKS)
     include(ProjectBenchmark)
     add_subdirectory(benchmarks)
 endif(BENCHMARKS)
 
-# # ----------------- third party deps end ------------------------------
+# # ----------------- third party deps include end ------------------------------
+
+# # ----------------- third party deps find_pacakge begin ------------------------------
+
+# readerwriterqueue
+find_path(READERWRITERQUEUE_INCLUDE_DIRS "readerwriterqueue/atomicops.h")
+
+# concurrentqueue
+find_package(unofficial-concurrentqueue CONFIG REQUIRED)
+
+# # ----------------- third party deps find_pacakge end ------------------------------
 
 # TODO: target_xxx_xxx sample
 # target_name add include directories for target
