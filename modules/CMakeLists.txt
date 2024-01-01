@@ -8,6 +8,8 @@ if(USE_LIBMATH)
     add_subdirectory(libmath)
 endif(USE_LIBMATH)
 
+add_subdirectory(libtimewheel)
+
 add_subdirectory(liblogger)
 add_subdirectory(libcoro)
 add_subdirectory(simple_c_demo)
