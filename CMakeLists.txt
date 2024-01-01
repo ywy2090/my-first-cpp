@@ -30,6 +30,7 @@ find_package(Threads REQUIRED)
 # add cmake module files
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
+message(STATUS "PROJECT_NAME => ${PROJECT_NAME}")
 message(STATUS "PROJECT_BINARY_DIR => ${PROJECT_BINARY_DIR}")
 message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 message(STATUS "CMAKE_BINARY_DIR => ${CMAKE_BINARY_DIR}")
@@ -78,6 +79,9 @@ include(ProjectCppCoro)
 
 # asyncio
 include(ProjectAsyncio)
+
+# async-simple
+include(ProjectAsyncSimple)
 
 # benchmark
 if(BENCHMARKS)
