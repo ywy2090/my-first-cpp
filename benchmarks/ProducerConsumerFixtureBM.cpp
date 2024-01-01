@@ -1,5 +1,5 @@
 #include <benchmark/benchmark.h>
-#include <concurrentqueue/moodycamel/concurrentqueue.h>
+#include <concurrentqueue/concurrentqueue.h>
 #include <sys/types.h>
 #include <list>
 #include <mutex>
