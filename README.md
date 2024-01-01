@@ -1,9 +1,11 @@
 # octopus-code
 
+
 ## 1. download `vcpkg`:
 
 ```shell
 $ git clone https://github.com/microsoft/vcpkg.git
+$ 
 ```
 
 ## 2. set environment VCPKG_ROOT

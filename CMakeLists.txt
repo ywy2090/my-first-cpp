@@ -49,6 +49,9 @@ include(CompilerSettings)
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
+include(CXXFeatureCheck)
+
+# # ----------------- third party deps find_pacakge begin ------------------------------
 # readerwriterqueue
 find_path(READERWRITERQUEUE_INCLUDE_DIRS "readerwriterqueue/atomicops.h")
 
@@ -90,8 +93,6 @@ if(BENCHMARKS)
 endif(BENCHMARKS)
 
 # # ----------------- third party deps include end ------------------------------
-
-# # ----------------- third party deps find_pacakge begin ------------------------------
 
 
 # TODO: target_xxx_xxx sample
