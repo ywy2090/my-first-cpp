@@ -34,12 +34,10 @@ struct HashedWheelTimerList
     }
 
     // create node
-    HashedWheelTimerNode::Ptr createNodeAndAppendNode(
-        std::shared_ptr<HashedTimeWheelTimerTask>& _task)
+    void createNodeAndAppendNode(std::shared_ptr<HashedTimeWheelTimerTask> _task)
     {
-        auto node = createNode(_task);
+        auto node = createNode(std::move(_task));
         appendNode(node);
-        return node;
     }
 
     // append node to list tail

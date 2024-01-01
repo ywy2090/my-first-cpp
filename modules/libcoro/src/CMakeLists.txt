@@ -11,9 +11,9 @@ set(CPPCORO_GENERATOR_TARGET cppcoro-generator-sample)
 add_executable(${CPPCORO_GENERATOR_TARGET} "CppCoroGenerator.cpp")
 target_link_libraries(${CPPCORO_GENERATOR_TARGET} PRIVATE cppcoro::cppcoro)
 
-set(ASYNCIO_TARGET asyncio-sample)
-add_executable(${ASYNCIO_TARGET} "Asyncio.cpp")
-target_link_libraries(${ASYNCIO_TARGET} PRIVATE asyncio)
+# set(ASYNCIO_TARGET asyncio-sample)
+# add_executable(${ASYNCIO_TARGET} "Asyncio.cpp")
+# target_link_libraries(${ASYNCIO_TARGET} PRIVATE asyncio)
 
 # add include directory
 # target_include_directories(${CORO_GENERATOR_TARGET} PUBLIC .)

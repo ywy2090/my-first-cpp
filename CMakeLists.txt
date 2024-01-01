@@ -81,7 +81,7 @@ include(ProjectSpdLog)
 include(ProjectCppCoro)
 
 # asyncio
-include(ProjectAsyncio)
+# include(ProjectAsyncio)
 
 # async-simple
 include(ProjectAsyncSimple)

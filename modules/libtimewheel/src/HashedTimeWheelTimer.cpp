@@ -136,4 +136,6 @@ void HashedTimeWheelTimer::processWaitingTasks()
         std::cout << " => Waiting tasks, diffMicroSec: " << diffMicroSec
                   << " totalRound: " << totalRound << " entryIndex: " << entryIndex << std::endl;
     }
+
+    waitingTaskQueue.clear();
 }
