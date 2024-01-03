@@ -19,7 +19,8 @@
 
 namespace octopus
 {
-
+namespace timewheel
+{
 class HashedTimeWheelTimer : public TimeWheelTimer
 {
 public:
@@ -109,4 +110,5 @@ private:
     std::mutex x_waitingTaskQueue;
     std::list<HashedTimeWheelTimerTask::Ptr> m_waitingTaskQueue;
 };
+}  // namespace timewheel
 }  // namespace octopus

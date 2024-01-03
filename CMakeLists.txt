@@ -49,7 +49,11 @@ include(CompilerSettings)
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
+# include CXXFeatures
 include(CXXFeatureCheck)
+
+# include IncludeDirectories
+include(IncludeDirectories)
 
 # # ----------------- third party deps find_pacakge begin ------------------------------
 # readerwriterqueue
@@ -85,6 +89,15 @@ include(ProjectCppCoro)
 
 # async-simple
 include(ProjectAsyncSimple)
+
+option(TESTS "Build tests" OFF)
+option(BENCHMARKS "Build benchmarks" OFF)
+
+# test
+if(TESTS)
+    include(ProjectGoogleTest)
+    enable_testing()
+endif(TESTS)
 
 # benchmark
 if(BENCHMARKS)

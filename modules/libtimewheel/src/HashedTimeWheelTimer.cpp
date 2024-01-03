@@ -3,6 +3,7 @@
 #include "HashedTimeWheelTimer.h"
 
 using namespace octopus;
+using namespace octopus::timewheel;
 
 // loop
 void HashedTimeWheelTimer::runLoop()

@@ -26,7 +26,6 @@ public:
 
 class TimeWheelTimer
 {
-    // task function
 public:
     TimeWheelTimer() = default;
     TimeWheelTimer(const TimeWheelTimer&) = delete;

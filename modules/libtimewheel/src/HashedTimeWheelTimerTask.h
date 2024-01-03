@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ObjectRefCount.h"
 #include "TimeWheelTimer.h"
 #include <atomic>
 #include <chrono>
@@ -7,9 +8,12 @@
 
 namespace octopus
 {
+namespace timewheel
+{
 
 // impl TimeWheelTimerTask for HashedTimeWheelTimer
-class HashedTimeWheelTimerTask : public TimeWheelTimerTask
+class HashedTimeWheelTimerTask : public TimeWheelTimerTask,
+                                 public objref::ObjectRefCount<HashedTimeWheelTimerTask>
 {
 public:
     using Ptr = std::shared_ptr<HashedTimeWheelTimerTask>;
@@ -98,4 +102,5 @@ private:
     //
     std::chrono::steady_clock::time_point m_endProcessTimePoint;
 };
+}  // namespace timewheel
 }  // namespace octopus

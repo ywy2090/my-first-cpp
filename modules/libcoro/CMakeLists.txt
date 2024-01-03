@@ -5,9 +5,9 @@ project(libcoro)
 add_subdirectory(src)
 
 # unit test
-if(TESTS)
+if(TESTS AND EXISTS test)
     add_subdirectory(test)
-endif(TESTS)
+endif(TESTS AND EXISTS test)
 
 # benchmark
 if(BENCHMARKS AND EXISTS benchmark)
