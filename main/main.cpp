@@ -1,7 +1,6 @@
 
 #include "Common.h"
 #include "Logger.h"
-#include "MyMath.h"
 #include "usage.h"
 #include <cstring>
 #include <iostream>
@@ -14,11 +13,6 @@ int main(int argc, char* argv[])
         initializer::printVersion();
         return 0;
     }
-
-    // {
-    //     math::Math math;
-    //     std::cout << "1 + 2 = " << math.add(1, 2) << std::endl;
-    // }
 
     // start log
     auto& logger = octo::logger::Logger::getInstance();
