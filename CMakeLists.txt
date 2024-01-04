@@ -49,6 +49,13 @@ include(CompilerSettings)
 # include BuildInfoGenerator
 include(BuildInfoGenerator)
 
+# include CXXFeatures
+include(CXXFeatureCheck)
+
+# include IncludeDirectories
+include(IncludeDirectories)
+
+# # ----------------- third party deps find_pacakge begin ------------------------------
 # readerwriterqueue
 find_path(READERWRITERQUEUE_INCLUDE_DIRS "readerwriterqueue/atomicops.h")
 
@@ -78,10 +85,19 @@ include(ProjectSpdLog)
 include(ProjectCppCoro)
 
 # asyncio
-include(ProjectAsyncio)
+# include(ProjectAsyncio)
 
 # async-simple
 include(ProjectAsyncSimple)
+
+option(TESTS "Build tests" OFF)
+option(BENCHMARKS "Build benchmarks" OFF)
+
+# test
+if(TESTS)
+    include(ProjectGoogleTest)
+    enable_testing()
+endif(TESTS)
 
 # benchmark
 if(BENCHMARKS)
@@ -90,8 +106,6 @@ if(BENCHMARKS)
 endif(BENCHMARKS)
 
 # # ----------------- third party deps include end ------------------------------
-
-# # ----------------- third party deps find_pacakge begin ------------------------------
 
 
 # TODO: target_xxx_xxx sample

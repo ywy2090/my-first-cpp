@@ -11,7 +11,7 @@ add_executable(${LEVELDB_TEST_TARGET} ${SRCS})
 # target_compile_options(${LEVELDB_TEST_TARGET} PRIVATE -std=c99)
 
 # Link Leveldb to the project
-target_link_libraries(${LEVELDB_TEST_TARGET} ${MATH_TARGET} leveldb::leveldb)
+target_link_libraries(${LEVELDB_TEST_TARGET} leveldb::leveldb)
 
 # Include Directories
 # target_include_directories(${LEVELDB_TEST_TARGET} PRIVATE ...)

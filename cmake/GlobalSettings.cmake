@@ -1,5 +1,4 @@
 # set global variables
-set(MATH_TARGET "math")
 set(LOGGER_TARGET "logger")
 
 # message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
