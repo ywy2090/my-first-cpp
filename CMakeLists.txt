@@ -90,17 +90,19 @@ include(ProjectCppCoro)
 # async-simple
 include(ProjectAsyncSimple)
 
-# option(TESTS "Build tests" OFF)
-# option(BENCHMARKS "Build benchmarks" OFF)
+option(TESTS "Build tests" OFF)
+option(BENCHMARKS "Build benchmarks" OFF)
 
 # test
 if(TESTS)
+    message(STATUS " ==> Build tests")
     include(ProjectGoogleTest)
     enable_testing()
 endif(TESTS)
 
 # benchmark
 if(BENCHMARKS)
+    message(STATUS " ==> Build benchmarks")
     include(ProjectBenchmark)
     add_subdirectory(benchmarks)
 endif(BENCHMARKS)

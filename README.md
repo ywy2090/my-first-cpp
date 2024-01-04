@@ -4,8 +4,8 @@
 ## 1. download `vcpkg`:
 
 ```shell
-$ git clone https://github.com/microsoft/vcpkg.git
-$ 
+$ git clone https://github.com/microsoft/vcpkg.git 
+$ git clone https://gitee.com/mirrors/vcpkg
 ```
 
 ## 2. set environment VCPKG_ROOT
