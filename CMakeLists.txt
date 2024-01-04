@@ -90,8 +90,8 @@ include(ProjectCppCoro)
 # async-simple
 include(ProjectAsyncSimple)
 
-option(TESTS "Build tests" OFF)
-option(BENCHMARKS "Build benchmarks" OFF)
+# option(TESTS "Build tests" OFF)
+# option(BENCHMARKS "Build benchmarks" OFF)
 
 # test
 if(TESTS)
@@ -114,7 +114,4 @@ endif(BENCHMARKS)
 # target_link_directories(target_name PUBLIC path/to/library/dir)
 
 # sub modules
-add_subdirectory(modules)
-
-# main program
-add_subdirectory(main)
+add_subdirectory(src)
