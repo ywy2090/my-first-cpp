@@ -34,11 +34,11 @@ public:
     HashedTimeWheelTimer() : HashedTimeWheelTimer(defaultTimeStepUS) {}
     HashedTimeWheelTimer(uint32_t _timeStepUS) : m_timeStepUS(_timeStepUS)
     {
-        std::cout << "[NEWOBJ][HashedTimeWheelTimer] this= " << this << std::endl;
+        // std::cout << "[NEWOBJ][HashedTimeWheelTimer] this= " << this << std::endl;
     }
     ~HashedTimeWheelTimer() override
     {
-        std::cout << "[DELOBJ][HashedTimeWheelTimer] this= " << this << std::endl;
+        // std::cout << "[DELOBJ][HashedTimeWheelTimer] this= " << this << std::endl;
         stop();
     }
 
@@ -75,7 +75,7 @@ public:
             m_waitingTaskQueue.push_back(taskPtr);
         }
 
-        std::cout << " ==> newTask" << std::endl;
+        //  std::cout << " ==> newTask" << std::endl;
 
         return taskPtr;
     }
