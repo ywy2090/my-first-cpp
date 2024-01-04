@@ -4,6 +4,6 @@ project(libtimewheel)
 
 add_subdirectory(src)
 
-if(TESTS AND EXISTS test)
+if(TESTS)
     add_subdirectory(test)
-endif(TESTS AND EXISTS test)
+endif(TESTS)
