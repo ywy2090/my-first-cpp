@@ -1,9 +1,7 @@
-cmake_minimum_required(VERSION 3.14)
-
-project(modules)
-
 # option(USE_LIBMATH "Use tutorial provided math implementation" ON)
 
+# main program
+add_subdirectory(main)
 add_subdirectory(libtimewheel)
 
 add_subdirectory(liblogger)
