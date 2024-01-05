@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ObjectRefCount.h"
+#include "ObjectAllocatorCount.h"
+#include "ObjectAllocatorMonitor.h"
 #include "TimeWheelTimer.h"
 #include <atomic>
 #include <chrono>
@@ -13,7 +14,7 @@ namespace timewheel
 
 // impl TimeWheelTimerTask for HashedTimeWheelTimer
 class HashedTimeWheelTimerTask : public TimeWheelTimerTask,
-                                 public objref::ObjectRefCount<HashedTimeWheelTimerTask>
+                                 public objref::ObjectAllocatorCount<HashedTimeWheelTimerTask>
 {
 public:
     using Ptr = std::shared_ptr<HashedTimeWheelTimerTask>;

@@ -2,6 +2,8 @@
 
 # main program
 add_subdirectory(main)
+
+add_subdirectory(libmemleak)
 add_subdirectory(libtimewheel)
 
 add_subdirectory(liblogger)

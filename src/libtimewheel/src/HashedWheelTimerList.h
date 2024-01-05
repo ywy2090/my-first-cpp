@@ -8,7 +8,7 @@ namespace timewheel
 {
 class HashedTimeWheelTimerTask;
 
-struct HashedWheelTimerNode : public objref::ObjectRefCount<HashedWheelTimerNode>
+struct HashedWheelTimerNode : public objref::ObjectAllocatorCount<HashedWheelTimerNode>
 {
     using Ptr = std::shared_ptr<HashedWheelTimerNode>;
     HashedWheelTimerNode::Ptr next{nullptr};
@@ -18,7 +18,7 @@ struct HashedWheelTimerNode : public objref::ObjectRefCount<HashedWheelTimerNode
     HashedTimeWheelTimerTask::Ptr task;
 };
 
-struct HashedWheelTimerList : public objref::ObjectRefCount<HashedWheelTimerList>
+struct HashedWheelTimerList : public objref::ObjectAllocatorCount<HashedWheelTimerList>
 {
     using Ptr = std::shared_ptr<HashedWheelTimerList>;
     // head node

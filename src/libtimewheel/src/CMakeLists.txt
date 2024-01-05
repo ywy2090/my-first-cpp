@@ -8,7 +8,7 @@ set(TIME_WHEEL_TARGET timewheel)
 
 add_library(${TIME_WHEEL_TARGET} ${SRCS})
 # target_include_directories(${TIME_WHEEL_TARGET} PUBLIC .)
-# target_link_libraries(${TIME_WHEEL_TARGET} PUBLIC jsoncpp_static OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(${TIME_WHEEL_TARGET} PUBLIC memleak)
 
 # install library
 # install(TARGETS ${TIME_WHEEL_TARGET} EXPORT mathTargets ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")
