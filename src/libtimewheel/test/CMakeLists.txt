@@ -6,5 +6,8 @@ add_executable(${TIMEWHEEL_TEST_TARGET} ${SRCS})
 
 target_link_libraries(${TIMEWHEEL_TEST_TARGET} GTest::gtest_main timewheel)
 
+# https://cmake.org/cmake/help/latest/command/add_test.html
+add_test(NAME ${TIMEWHEEL_TEST_TARGET} COMMAND ${TIMEWHEEL_TEST_TARGET})
+
 # include(GoogleTest)
 # gtest_discover_tests(${TIMEWHEEL_TEST_TARGET})
