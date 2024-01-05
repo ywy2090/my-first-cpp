@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 # project name
-set(PROJECT_NAME my-first-cpp)
+set(PROJECT_NAME octopus-code)
 
 set(VERSION "1.0.0")
 set(VERSION_SUFFIX "-beta")
@@ -36,6 +36,10 @@ message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 message(STATUS "CMAKE_BINARY_DIR => ${CMAKE_BINARY_DIR}")
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR => ${CMAKE_CURRENT_SOURCE_DIR}")
 message(STATUS "CMAKE_CURRENT_BINARY_DIR => ${CMAKE_CURRENT_BINARY_DIR}")
+
+if(POLICY CMP0135)
+    cmake_policy(SET CMP0135 NEW)
+endif()
 
 # include GNUInstallDirs
 include(GNUInstallDirs)
@@ -95,20 +99,19 @@ option(BENCHMARKS "Build benchmarks" OFF)
 
 # test
 if(TESTS)
-    message(STATUS " ==> Build tests")
+    # message(STATUS " ==> Build tests")
     include(ProjectGoogleTest)
     enable_testing()
 endif(TESTS)
 
 # benchmark
 if(BENCHMARKS)
-    message(STATUS " ==> Build benchmarks")
+    # message(STATUS " ==> Build benchmarks")
     include(ProjectBenchmark)
     add_subdirectory(benchmarks)
 endif(BENCHMARKS)
 
 # # ----------------- third party deps include end ------------------------------
-
 
 # TODO: target_xxx_xxx sample
 # target_name add include directories for target

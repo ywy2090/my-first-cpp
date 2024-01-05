@@ -14,13 +14,16 @@ ExternalProject_add(nlohmann-json
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${THIRD_PARTY_DIR}
 
+    # -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
     # INSTALL_COMMAND ""
     # INSTALL_DIR ${CMAKE_SOURCE_DIR}/deps/libs
 )
 
 # nlohmann_json::nlohmann_json
-file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
+file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR}) # Must exist.
 add_library(nlohmann::json INTERFACE IMPORTED GLOBAL)
+
 # head only
 # set_property(TARGET nlohmann::json PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/${LIB_JSON_TARGET}.a)
 set_property(TARGET nlohmann::json PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${THIRD_PARTY_INCLUDE_DIR})

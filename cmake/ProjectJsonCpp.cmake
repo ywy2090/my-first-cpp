@@ -15,13 +15,14 @@ ExternalProject_add(json-cpp
     -DBUILD_SHARED_LIBS=OFF
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${THIRD_PARTY_DIR}
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
     # INSTALL_COMMAND ""
     # INSTALL_DIR ${CMAKE_SOURCE_DIR}/deps/libs
 )
 
 # nlohmann_json::nlohmann_json
-file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR})  # Must exist.
+file(MAKE_DIRECTORY ${THIRD_PARTY_INCLUDE_DIR}) # Must exist.
 add_library(jsoncpp_lib STATIC IMPORTED GLOBAL)
 
 set_property(TARGET jsoncpp_lib PROPERTY IMPORTED_LOCATION ${THIRD_PARTY_LIBS_DIR}/libjsoncpp.a)
