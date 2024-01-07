@@ -9,10 +9,10 @@ add_library(${LOGGER_TARGET} ${SRCS})
 # add include directory
 target_include_directories(${LOGGER_TARGET} PUBLIC .)
 
-# link libraris for main excutable
-target_link_libraries(${LOGGER_TARGET} PUBLIC spdlog::spdlog)
+find_package(log4cplus REQUIRED)
 
-add_dependencies(${LOGGER_TARGET} spdlog::spdlog)
+# link libraris for main excutable
+target_link_libraries(${LOGGER_TARGET} PUBLIC log4cplus::log4cplus)
 
 # install library
 # install(TARGETS ${LOGGER_TARGET} EXPORT mathTargets ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")

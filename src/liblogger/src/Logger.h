@@ -1,24 +1,17 @@
 #pragma once
 #include "Common.h"
-#include "spdlog/spdlog.h"
 #include <algorithm>
 #include <atomic>
-#include <memory>
+#include <log4cplus/configurator.h>
+#include <log4cplus/helpers/loglog.h>
+#include <log4cplus/helpers/stringhelper.h>
+#include <log4cplus/loggingmacros.h>
+#include <log4cplus/logger.h>
 
 namespace octo
 {
 namespace logger
 {
-
-struct LogConf
-{
-    std::string logName = "demo.log";
-    std::string logDir = "./logs";
-
-    std::string logLevel = "info";
-    int logFileSize = 1024 * 1024 * 200;
-    int logFileCount = 10;
-};
 
 class Logger
 {
@@ -32,8 +25,6 @@ public:
     virtual ~Logger() noexcept { this->stopLog(); }
 
 public:
-    std::shared_ptr<spdlog::logger> spdlog() const { return m_spdlog; }
-
     static Logger& getInstance()
     {
         static Logger logger;
@@ -41,12 +32,17 @@ public:
     }
 
     // start log
-    virtual void startLog(const LogConf& logConf = LogConf{});
+    virtual void startLog(const std::string &logFile = "log.properties");
     virtual void stopLog();
+
+    inline const log4cplus::Logger& getLogger() const { return logger; }
+    inline const log4cplus::Logger& getConsoleLogger() const { return consoleLogger; }
 
 private:
     std::atomic<bool> m_running{false};
-    std::shared_ptr<spdlog::logger> m_spdlog;
+
+    log4cplus::Logger logger;
+    log4cplus::Logger consoleLogger;
 };
 }  // namespace logger
 }  // namespace octo

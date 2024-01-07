@@ -1,6 +1,7 @@
 
 
 #include "HashedTimeWheelTimer.h"
+#include <exception>
 
 using namespace octopus;
 using namespace octopus::timewheel;
@@ -65,7 +66,15 @@ void HashedTimeWheelTimer::runOnceLoop()
             {
                 // TODO: exec task in independent thread pool
                 task->m_beginProcessTimePoint = std::chrono::steady_clock::now();
-                task->task()();
+                try
+                {
+                    task->task()();
+                }
+                catch (const std::exception& _e)
+                {
+                    // TODO: exception
+                }
+
                 task->m_endProcessTimePoint = std::chrono::steady_clock::now();
                 // task->execTimeMilli();
                 task->setState(HashedTimeWheelTimerTask::State::finished);
