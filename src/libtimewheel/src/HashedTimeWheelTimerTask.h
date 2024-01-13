@@ -26,7 +26,7 @@ public:
 
     ~HashedTimeWheelTimerTask() override
     {
-        LOG_DEBUG("[DELOBJ][HashedTimeWheelTimerTask] " << LOG_KV("this", this));
+        // LOG_DEBUG("[DELOBJ][HashedTimeWheelTimerTask] " << LOG_KV("this", this));
     }
 
     enum State
@@ -41,7 +41,7 @@ public:
         std::chrono::steady_clock::time_point _inTimePoint = std::chrono::steady_clock::now())
       : m_task(std::move(_task)), m_delayMS(_delayMS), m_createTimePoint(_inTimePoint)
     {
-        LOG_DEBUG("[NEWOBJ][HashedTimeWheelTimerTask] " << LOG_KV("this", this));
+        // LOG_DEBUG("[NEWOBJ][HashedTimeWheelTimerTask] " << LOG_KV("this", this));
     }
 
 
