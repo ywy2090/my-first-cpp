@@ -4,11 +4,9 @@ cmake_minimum_required(VERSION 3.14)
 # file(GLOB SRCS *.cpp)
 file(GLOB_RECURSE SRCS *.cpp)
 
-set(TIME_WHEEL_TARGET timewheel)
-
-add_library(${TIME_WHEEL_TARGET} ${SRCS})
+add_library(${TIME_WHEEL_TARGET} "${SRCS}")
 # target_include_directories(${TIME_WHEEL_TARGET} PUBLIC .)
-target_link_libraries(${TIME_WHEEL_TARGET} PUBLIC memleak)
+target_link_libraries(${TIME_WHEEL_TARGET} PUBLIC ${MEM_LEAK_TARGET} ${LOGGER_TARGET})
 
 # install library
 # install(TARGETS ${TIME_WHEEL_TARGET} EXPORT mathTargets ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}")

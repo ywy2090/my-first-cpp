@@ -3,11 +3,13 @@
 #include <functional>
 #include <memory>
 
-// interface for TimeWheelTimer
-namespace octopus
+namespace octopus::timewheel
 {
 
-// task for TimeWheelTimer
+/**
+ * @brief interface for TimeWheelTimer
+ *
+ */
 class TimeWheelTimerTask
 {
 public:
@@ -24,6 +26,10 @@ public:
     virtual bool cancel() = 0;
 };
 
+/**
+ * @brief task for TimeWheelTimer
+ *
+ */
 class TimeWheelTimer
 {
 public:
@@ -35,8 +41,11 @@ public:
 
     virtual ~TimeWheelTimer() = default;
 
+    virtual void start() = 0;
+    virtual void stop() = 0;
+
     // construct task
     virtual TimeWheelTimerTask::Ptr newTask(std::function<void()> _task, uint32_t _delayMS) = 0;
 };
 
-}  // namespace octopus
+}  // namespace octopus::timewheel

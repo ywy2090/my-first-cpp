@@ -1,20 +1,20 @@
 #pragma once
 
-#include "ObjectAllocatorCount.h"
-#include "ObjectAllocatorMonitor.h"
+#include "Common.h"
 #include "TimeWheelTimer.h"
+#include "liblogger/src/Logger.h"
+#include "libmemleak/src/ObjectAllocatorCounter.h"
+#include "libmemleak/src/ObjectAllocatorMonitor.h"
 #include <atomic>
 #include <chrono>
 #include <iostream>
 
-namespace octopus
-{
-namespace timewheel
+namespace octopus::timewheel
 {
 
 // impl TimeWheelTimerTask for HashedTimeWheelTimer
 class HashedTimeWheelTimerTask : public TimeWheelTimerTask,
-                                 public objref::ObjectAllocatorCount<HashedTimeWheelTimerTask>
+                                 public memleak::ObjectAllocatorCounter<HashedTimeWheelTimerTask>
 {
 public:
     using Ptr = std::shared_ptr<HashedTimeWheelTimerTask>;
@@ -26,7 +26,7 @@ public:
 
     ~HashedTimeWheelTimerTask() override
     {
-        //  std::cout << "[DELOBJ][HashedTimeWheelTimerTask] this= " << this << std::endl;
+        LOG_DEBUG("[DELOBJ][HashedTimeWheelTimerTask] " << LOG_KV("this", this));
     }
 
     enum State
@@ -39,10 +39,11 @@ public:
 
     HashedTimeWheelTimerTask(std::function<void()> _task, uint32_t _delayMS,
         std::chrono::steady_clock::time_point _inTimePoint = std::chrono::steady_clock::now())
-      : m_task(std::move(_task)), m_delayMS(_delayMS), m_inTimePoint(_inTimePoint)
+      : m_task(std::move(_task)), m_delayMS(_delayMS), m_createTimePoint(_inTimePoint)
     {
-        //  std::cout << "[NEWOBJ][HashedTimeWheelTimerTask] this= " << this << std::endl;
+        LOG_DEBUG("[NEWOBJ][HashedTimeWheelTimerTask] " << LOG_KV("this", this));
     }
+
 
     // cancel the task
     bool cancel() override
@@ -51,27 +52,35 @@ public:
         return m_taskState.compare_exchange_strong(expect, canceled);
     }
 
-    bool isCanceled() const { return m_taskState.load(std::memory_order_acquire) == canceled; }
-
     // reset task state
     void setState(State _state) { m_taskState = _state; }
+
+    bool isCanceled() const { return m_taskState.load(std::memory_order_acquire) == canceled; }
     bool isWaiting() const { return m_taskState.load(std::memory_order_acquire) == waiting; }
     bool isProcessing() const { return m_taskState.load(std::memory_order_acquire) == processing; }
     bool isFinished() const { return m_taskState.load(std::memory_order_acquire) == finished; }
 
     // task waiting time
-    int32_t waitingTimeMilli()
+    int64_t waitingTimeMilli()
     {
         return std::chrono::duration_cast<std::chrono::milliseconds>(
-            m_beginProcessTimePoint - m_inTimePoint)
+            m_beginProcessTimePoint - m_createTimePoint)
             .count();
     }
 
     // task exec time
-    int32_t execTimeMilli()
+    int64_t execTimeMilli()
     {
         return std::chrono::duration_cast<std::chrono::milliseconds>(
             m_endProcessTimePoint - m_beginProcessTimePoint)
+            .count();
+    }
+
+    // total elapsed time from task create
+    int64_t elapsedTimeMilli()
+    {
+        return std::chrono::duration_cast<std::chrono::milliseconds>(
+            m_endProcessTimePoint - m_createTimePoint)
             .count();
     }
 
@@ -79,7 +88,7 @@ public:
     uint32_t delayMS() const { return m_delayMS; }
 
     uint32_t leftRoundToExec() const { return m_leftRoundToExec; }
-    uint32_t hashEntryIndex() const { return m_hashEntryIndex; }
+    uint32_t currentHashBucketIndex() const { return m_currentHashBucketIndex; }
     void decrLeftRoundToExec() { m_leftRoundToExec--; }
 
     friend class HashedTimeWheelTimer;
@@ -95,13 +104,12 @@ private:
     uint32_t m_delayMS;
 
     //
-    uint32_t m_hashEntryIndex = (uint32_t)-1;
+    uint32_t m_currentHashBucketIndex = (uint32_t)-1;
     //
-    std::chrono::steady_clock::time_point m_inTimePoint;
+    std::chrono::steady_clock::time_point m_createTimePoint;
     //
     std::chrono::steady_clock::time_point m_beginProcessTimePoint;
     //
     std::chrono::steady_clock::time_point m_endProcessTimePoint;
 };
-}  // namespace timewheel
-}  // namespace octopus
+}  // namespace octopus::timewheel

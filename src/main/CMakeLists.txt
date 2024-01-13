@@ -16,4 +16,4 @@ add_executable(${PROJECT_NAME} ${SRCS})
 add_compile_definitions(SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE)
 
 # link libraris for main excutable
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LOGGER_TARGET} nlohmann::json fmt::fmt log4cplus::log4cplus)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LOGGER_TARGET} ${TIME_WHEEL_TARGET} nlohmann::json fmt::fmt log4cplus::log4cplus)

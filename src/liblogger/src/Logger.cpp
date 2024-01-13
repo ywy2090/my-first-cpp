@@ -1,8 +1,8 @@
 #include "Logger.h"
 
-using namespace octo::logger;
+using namespace octopus::logger;
 
-void Logger::startLog(const std::string &logFile )
+void Logger::startLog(const std::string& logFile)
 {
     if (m_running)
     {
@@ -16,11 +16,11 @@ void Logger::startLog(const std::string &logFile )
     logger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("allLogger"));
     consoleLogger = log4cplus::Logger::getInstance(LOG4CPLUS_TEXT("consoleLogger"));
 
-    LOG_INFO("start log successfully");
+    LOG_INFO("start logger successfully");
 }
 
 void Logger::stopLog()
 {
-    LOG_INFO("try stop log");
+    LOG_INFO("try stop logger");
     log4cplus::deinitialize();
 }

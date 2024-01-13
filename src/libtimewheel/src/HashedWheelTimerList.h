@@ -2,13 +2,11 @@
 #include "HashedTimeWheelTimerTask.h"
 #include <cassert>
 
-namespace octopus
-{
-namespace timewheel
+namespace octopus::timewheel
 {
 class HashedTimeWheelTimerTask;
 
-struct HashedWheelTimerNode : public objref::ObjectAllocatorCount<HashedWheelTimerNode>
+struct HashedWheelTimerNode : public memleak::ObjectAllocatorCounter<HashedWheelTimerNode>
 {
     using Ptr = std::shared_ptr<HashedWheelTimerNode>;
     HashedWheelTimerNode::Ptr next{nullptr};
@@ -18,7 +16,7 @@ struct HashedWheelTimerNode : public objref::ObjectAllocatorCount<HashedWheelTim
     HashedTimeWheelTimerTask::Ptr task;
 };
 
-struct HashedWheelTimerList : public objref::ObjectAllocatorCount<HashedWheelTimerList>
+struct HashedWheelTimerList : public memleak::ObjectAllocatorCounter<HashedWheelTimerList>
 {
     using Ptr = std::shared_ptr<HashedWheelTimerList>;
     // head node
@@ -50,5 +48,4 @@ struct HashedWheelTimerList : public objref::ObjectAllocatorCount<HashedWheelTim
     // list node count
     int listNodeC{0};
 };
-}  // namespace timewheel
-}  // namespace octopus
+}  // namespace octopus::timewheel

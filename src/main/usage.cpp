@@ -7,7 +7,7 @@
 
 void initializer::printVersion()
 {
-    fmt::print("fmt::fmt main");
+    // fmt::print("fmt::fmt main");
     fmt::print("Project Version    : {}\n", PROJECT_PROJECT_VERSION);
     fmt::print("Build Time         : {}\n", PROJECT_BUILD_TIME);
     fmt::print("Build Type         : {}/{}\n", PROJECT_BUILD_PLATFORM, PROJECT_BUILD_TYPE);

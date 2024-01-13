@@ -4,7 +4,7 @@
 
 namespace octopus
 {
-namespace objref
+namespace memleak
 {
 
 // template class declaration
@@ -55,5 +55,5 @@ public:
     }
 };
 
-}  // namespace objref
+}  // namespace memleak
 }  // namespace octopus

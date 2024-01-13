@@ -1,5 +1,7 @@
 # set global variables
-set(LOGGER_TARGET "logger")
+set(LOGGER_TARGET "octopus-log")
+set(TIME_WHEEL_TARGET "octopus-timewheel")
+set(MEM_LEAK_TARGET "octopus-memleak")
 
 # message(STATUS "CMAKE_SOURCE_DIR => ${CMAKE_SOURCE_DIR}")
 # message(STATUS "CMAKE_BINARY_DIR => ${CMAKE_BINARY_DIR}")

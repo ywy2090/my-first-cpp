@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.14)
 # file(GLOB SRCS *.cpp)
 file(GLOB_RECURSE SRCS *.h *.cpp)
 
-set(MEM_LEAK_TARGET memleak)
+# set(MEM_LEAK_TARGET memleak)
 
 add_library(${MEM_LEAK_TARGET} INTERFACE ${SRCS})
 # target_include_directories(${MEM_LEAK_TARGET} PUBLIC .)
